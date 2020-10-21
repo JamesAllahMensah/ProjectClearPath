@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/Article">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href=https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <title>Login Page</title>
+
+    <meta name="google-signin-client_id" content="792564645914-5bpu80i8i0evvgg2mi5e2nfpndjahvkg.apps.googleusercontent.com">
+    <head>
+
+    </head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Sign In</h5>
+                    <div class="g-signin2" data-onsuccess="onSignIn">
+<!--                        <form name="loginForm" method="post" action="LoginServlet">-->
+<!--                            <input id = "username" value="a" type="text" name="username"/> <br/>-->
+<!--                            <input id = "password" style="visibility: hidden" value="a" type="password" name="password"/> <br/>-->
+<!--                            <input type="submit" value="Login" />-->
+<!--                        </form>-->
+                    </div>
+<!--                    <form name="loginForm" method="post" action="LoginServlet">-->
+<!--                        <input style="visibility: hidden" type="text" name="username"/> <br/>-->
+<!--                        <input style="visibility: hidden" type="password" name="password"/> <br/>-->
+<!--                        <input type="submit" value="Login" />-->
+<!--                    </form>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    function navMain() {
+        window.location.href = "secondary.html"
+    }
+
+    function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        var name = profile.getName();
+        var email = profile.getEmail();
+        // name = "Dav Arcand";
+        // email = "dave.arcand.17@cnu.edu";
+        localStorage.setItem("name", name)
+        localStorage.setItem("email", email)
+        $.ajax({
+            type: "POST",
+            url: "LoginServlet",
+            data: {
+                username: name,
+                email: email,
+            },
+            success: function (data) {
+                console.log("YERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR")
+                // redirect(data);
+            },
+            error: function (textStatus, errorThrown) {
+
+            }
+
+        });
+    }
+
+    function redirect(response){
+        if (response === "Account Added!"){
+            // window.location.href = "main.html"
+        }
+        else{
+            localStorage.setItem("info", response)
+            // window.location.href = "welcome.html"
+        }
+    }
+
+    //Client ID:  792564645914-5bpu80i8i0evvgg2mi5e2nfpndjahvkg.apps.googleusercontent.com
+    //Client Secret: fg8OmFFo06WVw7r2ZB8g0g_5
+</script>
+</html>

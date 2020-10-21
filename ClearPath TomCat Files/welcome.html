@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Option</title>
+    <link rel = "stylesheet" href = https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css>
+    <link rel = "stylesheet" type = "text/css" href = "css/styles.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <h5 class="card-title text-center"> Welcome</h5>
+                    <input style="background-color: red" type="button" class="btn btn-lg btn-primary btn-block text-uppercase"  value="Create New Plan">
+                    <br class="line-break">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script>
+    // function navTable(){
+    //     window.location.href = "table.jsp"
+    // }
+    document.getElementsByClassName('card-title text-center')[0].innerHTML = "Welcome Back " + localStorage.getItem("name");
+
+    function appendMultiplePlans(){
+        let responseData = localStorage.getItem("info");
+        responseData = responseData.split("\t")
+        let plans = responseData[1];
+        let separatedPlans = plans.split(";")
+        let cardBody = document.getElementsByClassName("card-body")[0];
+        for (let i = 0; i < separatedPlans.length; i++){
+            let indivPlan = separatedPlans[i];
+            let navButton = document.createElement("input");
+            let lineBreak = document.createElement("br");
+            lineBreak.setAttribute("class", "line-break")
+            navButton.setAttribute("input", "button")
+            navButton.setAttribute("class", "btn btn-lg btn-primary btn-block text-uppercase");
+            navButton.setAttribute("value", indivPlan);
+            cardBody.appendChild(navButton)
+            cardBody.appendChild(lineBreak)
+        }
+    }
+
+    appendMultiplePlans();
+
+</script>
+</html>

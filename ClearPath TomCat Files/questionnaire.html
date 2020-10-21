@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Questionnaire</title>
+</head>
+<body>
+<div className = "questionBody">
+    <form name="questionnaire" method="post" action="questionServlet">
+        <div id = "major">
+            <h2>Select a major?</h2>
+
+            <select name="majors" id="majors">
+                <option value="Select Major">Select Major</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Computer Engineering">Computer Engineering</option>
+                <option value="Cyber Security">Cyber Security</option>
+                <option value="Electrical Engineering">Electrical Engineering</option>
+                <option value="Information Science">Information Science</option>
+                <option value="Physics">Physics</option>
+            </select>
+        </div>
+        <div id = "double-majpr">
+            <h2>Double Major?</h2>
+
+            <input type="radio" id="yes-double-major" name="selector-dm" value="yes" onchange="showDoubleMajor()">
+            <label for="yes-double-major">Yes</label><br>
+            <input type="radio" id="no-double-major" name="selector-dm" value="no" onchange="hideDoubleMajor()">
+            <label for="no-double-major">No</label><br><br><br>
+
+            <h2 id = "double-major-banner" style = "visibility: hidden">Select your second major</h2>
+            <select style ="visibility: hidden" name="double-majors" id="double-majors">
+                <option value="Select Major">Select Major</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Computer Engineering">Computer Engineering</option>
+                <option value="Cyber Security">Cyber Security</option>
+                <option value="Electrical Engineering">Electrical Engineering</option>
+                <option value="Information Science">Information Science</option>
+                <option value="Physics">Physics</option>
+            </select>
+            
+        </div>
+        <div id = "check-for-minor">
+            <h2>Minor?</h2>
+            <input type="radio" id="check-minor-yes" name="selector-minor" value="yes" onchange="showMinor()">
+            <label for="check-minor-yes">Yes</label><br>
+            <input type="radio" id="check-minor-no" name="selector-minor" value="no" onchange="hideMinor()">
+            <label for="check-minor-no">No</label><br><br><br>
+        </div>
+        <div id = "minor" style = "visibility: hidden">
+            <h2>Select a minor?</h2>
+            <select name="minors" id="minors">
+                <option value="Select Minor">Select Minor</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Computer Engineering">Computer Engineering</option>
+                <option value="Cyber Security">Cyber Security</option>
+                <option value="Electrical Engineering">Electrical Engineering</option>
+                <option value="Information Science">Information Science</option>
+                <option value="Physics">Physics</option>
+            </select>
+
+            <div id = "double-minor" >
+                <h2>Double minor?</h2>
+                <input type="radio" id="yes-double-minor" name="selector-dmi" value="yes" onchange="showDoubleMinor()">
+                <label for="yes-double-minor">Yes</label><br>
+                <input type="radio" id="no-double-minor" name="selector-dmi" value="no" onchange="hideDoubleMinor()">
+                <label for="no-double-minor">No</label><br><br><br>
+
+                <h2 id = "double-minor-banner" style = "visibility: hidden">Select your second minor</h2>
+                <select style ="visibility: hidden" name="double-minors" id="double-minors">
+                    <option value="Select Minor">Select Minor</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Computer Engineering">Computer Engineering</option>
+                    <option value="Cyber Security">Cyber Security</option>
+                    <option value="Electrical Engineering">Electrical Engineering</option>
+                    <option value="Information Science">Information Science</option>
+                    <option value="Physics">Physics</option>
+                </select>
+
+            </div>
+        </div>
+        <div id = "grad-school">
+            <h2>Graduate School?</h2>
+
+            <input type="radio" id="yes-grad-school" name="selector-gs" value="yes">
+            <label for="yes-grad-school">Yes</label><br>
+            <input type="radio" id="no-grad-school" name="selector-gs" value="no">
+            <label for="no-grad-school">No</label><br><br><br>
+        </div>
+
+        <div id = "advisor">
+            <h2>Select your advisor?</h2>
+
+            <select name="advisor" id="advisor-list">
+                <option value="Select Advisor">Select Advisor</option>
+                <option value="Mohammad Alamalag">Mohammad Alamalag</option>
+                <option value="Johnathan Backens">Johnathan Backens</option>
+                <option value="Amy Baird">Amy Baird</option>
+                <option value="Robert Bruntz">Robert Bruntz</option>
+                <option value="Leon Cole">Leon Cole</option>
+                <option value="David Conner">David Conner</option>
+                <option value="Farideh Doost Mohammadi">Farideh Doost Mohammadi</option>
+                <option value="Dave Doughty">Dave Doughty</option>
+                <option value="Rob Fersch">Rob Fersch</option>
+                <option value="Ryan Fisher">Ryan Fisher</option>
+                <option value="Roberto Flores">Roberto Flores</option>
+                <option value="Costa Gerousis">Costa Gerousis</option>
+                <option value="David Gore">David Gore</option>
+                <option value="Ronald Hanchin">Ronald Hanchin</option>
+                <option value="David Heddle">David Heddle</option>
+                <option value="Samuel Henry">Samuel Henry</option>
+                <option value="Hessam Keshtkar Vanashi">Hessam Keshtkar Vanashi</option>
+                <option value="Christopher Kreider">Christopher Kreider</option>
+                <option value="Lynn Lambert">Lynn Lambert</option>
+                <option value="Michael Lapke">Michael Lapke</option>
+                <option value="Scott McElfresh">Scott McElfresh</option>
+                <option value="Keith Perkins">Keith Perkins</option>
+                <option value="William Phelps">William Phelps</option>
+                <option value="Nazli Siasi">Nazli Siasi</option>
+                <option value="Antonio Siochi">Antonio Siochi</option>
+                <option value="Marissa Walker">Marissa Walker</option>
+                <option value="Elizabeth Ward">Elizabeth Ward</option>
+                <option value="Ming Zhang">Ming Zhang</option>
+            </select>
+        </div>
+
+        <div style = "visibility: hidden" name="email-field" value ="">
+            <select id = "hidden-email" name="email-hidden">
+
+            </select>
+        </div>
+
+        <input type="submit" value="Submit">
+
+    </form>
+<!--    <button onclick="printValues()">click</button>-->
+
+</div>
+
+</body>
+<script>
+
+    function printValues(){
+        console.log(document.getElementsByName("majors")[0].value);
+        console.log(document.getElementsByName("selector-dm")[0].value);
+        console.log(document.getElementsByName("double-majors")[0].value);
+        console.log(document.getElementsByName("selector-minor")[0].value);
+        console.log(document.getElementsByName("selector-dmi")[0].value);
+        console.log(document.getElementsByName("double-minors")[0].value);
+        console.log(document.getElementsByName("selector-gs")[0].value);
+        console.log(document.getElementsByName("advisor")[0].value);
+
+    }
+
+    function hideDoubleMajor(){
+        document.getElementById("double-majors").style.visibility = "hidden";
+        document.getElementById("double-major-banner").style.visibility = "hidden";
+    }
+
+    function showDoubleMajor(){
+        document.getElementById("double-majors").style.visibility = "visible";
+        document.getElementById("double-major-banner").style.visibility = "visible";
+    }
+
+    function hideDoubleMinor(){
+        document.getElementById("double-minors").style.visibility = "hidden";
+        document.getElementById("double-minor-banner").style.visibility = "hidden";
+    }
+
+    function showDoubleMinor(){
+        document.getElementById("double-minors").style.visibility = "visible";
+        document.getElementById("double-minor-banner").style.visibility = "visible";
+    }
+
+    function hideMinor(){
+        document.getElementById("minor").style.visibility = "hidden";
+    }
+
+    function showMinor(){
+        document.getElementById("minor").style.visibility = "visible";
+    }
+
+    function storeEmail(){
+        // document.getElementsByName("email-field")[0].value = localStorage.getItem("email");
+        let emailDiv = document.getElementById("hidden-email");
+        let optEmail = document.createElement("option");
+        optEmail.setAttribute("value", localStorage.getItem("email"));
+        emailDiv.appendChild(optEmail)
+
+    }
+    // console.log(localStorage.getItem("email"))
+    storeEmail();
+
+</script>
+</html>
