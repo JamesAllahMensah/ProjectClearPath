@@ -1,0 +1,2 @@
+ENGL123	First-Year Writing Seminar	3	""
+ENGL223	Second-Year Writing Seminar	3	""

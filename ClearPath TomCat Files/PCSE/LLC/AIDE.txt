@@ -1,0 +1,7 @@
+AMST100	The American Experiment: Formation of Democratic Life	3	""
+AMST120	Encounters with the Constitution	3	""
+COMM305	The First Amendment, Culture and Communication	3	COMM249,Sophomore,Junior,Senior
+HIST121	Early America to the Civil War	3	""
+HIST210	History of Virginia	3	""
+POLS101	Power and Politics in Amerca	3	""
+POLS240	The Supreme Court in American Politics	3	""

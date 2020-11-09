@@ -42,7 +42,7 @@ public class questionServlet extends HttpServlet {
 			out.println("Failed");
 			e.printStackTrace();
 		}
-		response.sendRedirect("table.html");
+//		response.sendRedirect("table.html");
 	}
 	
 	public static void updateProfile(String email, String major, String doubleMajor, String minor, String doubleMinor, String gradSchool, String advisor) throws ClassNotFoundException {

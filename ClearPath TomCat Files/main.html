@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Select Option</title>
-    <link rel = "stylesheet" href = https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css>
-    <link rel = "stylesheet" type = "text/css" href = "css/styles.css">
+    <link rel="stylesheet" href=https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 <body>
 <div class="container">
@@ -13,9 +17,9 @@
             <div class="card card-signin my-5">
                 <div class="card-body">
                     <h5 class="card-title text-center"> Welcome, </h5>
-                    <button class="btn btn-lg btn-primary btn-block text-uppercase" >View Recommended</button>
+                    <button onclick = "navTable()" class="btn btn-lg btn-primary btn-block text-uppercase" >View Recommended</button>
                     <hr class="my-4">
-                    <button class="btn btn-lg btn-google btn-block text-uppercase" ><i class="fab fa-google mr-2"></i>Start Blank</button>
+                    <button onclick = "navQuestionnaire()" class="btn btn-lg btn-google btn-block text-uppercase" ><i class="fab fa-google mr-2"></i>Start Blank</button>
                 </div>
             </div>
         </div>
@@ -26,5 +30,19 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 <script>
     document.getElementsByClassName('card-title text-center')[0].innerHTML = "Welcome " + localStorage.getItem("name");
+
+    if (localStorage.getItem("response") != "Account Added!"){
+        document.getElementsByClassName('card-title text-center')[0].innerHTML = "Create a New Plan"
+    }
+
+    function navQuestionnaire(){
+        window.location.href = "questionnaire.html";
+    }
+
+    function navTable(){
+        localStorage.setItem("planName", "Create New Plan");
+        window.location.href = "table.html";
+    }
+
 </script>
 </html>

@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Select Option</title>
-    <link rel = "stylesheet" href = https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css>
-    <link rel = "stylesheet" type = "text/css" href = "css/styles.css">
+    <link rel="stylesheet" href=https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 <body>
 <div class="container">
@@ -13,7 +16,7 @@
             <div class="card card-signin my-5">
                 <div class="card-body">
                     <h5 class="card-title text-center"> Welcome</h5>
-                    <input style="background-color: red" type="button" class="btn btn-lg btn-primary btn-block text-uppercase"  value="Create New Plan">
+                    <input onclick="navCreationPage()" style="background-color: red" type="button" class="btn btn-lg btn-primary btn-block text-uppercase"  value="Create New Plan">
                     <br class="line-break">
                 </div>
             </div>
@@ -24,9 +27,20 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 <script>
-    // function navTable(){
-    //     window.location.href = "table.jsp"
-    // }
+    function navTable(){
+        window.location.href = "table.html"
+    }
+
+    function navLoadedTable(){
+        let clickedPlan = this.value;
+        localStorage.setItem("planName", clickedPlan)
+        window.location.href = "table.html"
+    }
+
+    function navCreationPage(){
+        window.location.href = "main.html"
+    }
+
     document.getElementsByClassName('card-title text-center')[0].innerHTML = "Welcome Back " + localStorage.getItem("name");
 
     function appendMultiplePlans(){
@@ -36,13 +50,15 @@
         let separatedPlans = plans.split(";")
         let cardBody = document.getElementsByClassName("card-body")[0];
         for (let i = 0; i < separatedPlans.length; i++){
-            let indivPlan = separatedPlans[i];
+            let indivPlan = separatedPlans[i].trim();
             let navButton = document.createElement("input");
             let lineBreak = document.createElement("br");
             lineBreak.setAttribute("class", "line-break")
             navButton.setAttribute("input", "button")
             navButton.setAttribute("class", "btn btn-lg btn-primary btn-block text-uppercase");
             navButton.setAttribute("value", indivPlan);
+            navButton.addEventListener("click", navLoadedTable);
+
             cardBody.appendChild(navButton)
             cardBody.appendChild(lineBreak)
         }

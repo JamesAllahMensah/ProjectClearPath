@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="scripts.js"></script>
+
 <style>
     table, th, td {
         border: 1px solid black;
@@ -15,15 +20,103 @@
     <title>Plan</title>
 </head>
 <body style = "background: #1e376d;">
-    <div id = "course-loader" style = "position: absolute; width: 700px; height: 350px; background: white; bottom: 10%">
-        <select name="courses" id="courses" style = "margin-top: 10px; position: absolute; left: 300px; width: 20%" >
-            <option value="CPSC">CPSC</option>
+<div id = "planner-prompt" style = "position: absolute; width: 550px; height: 400px; background: white; top: 7%; left: 5%">
+<!--    <h3 style ="text-align: center">FEEDBACK</h3><hr style ="width: 80%">-->
+    <div id="program-requirements">
+        <h3 style="margin-left: 10px"><b><u>Program Requirements</u></b></h3>
+<!--        <div id="CPEN214-checker" style="position: absolute; left: 10px">-->
+<!--            <input type="checkbox" id="CPEN214" value="CPEN214" onclick="return false;" readonly="readonly">-->
+<!--            <label for="CPEN214">CPEN214</label>-->
+<!--        </div>-->
+<!--        <div id="CPEN371-checker" style="position: absolute; left: 140px">-->
+<!--            <input type="checkbox" id="CPEN371" value="CPEN371" onclick="return false;" readonly="readonly">-->
+<!--            <label for="CPEN371">CPEN371</label>-->
+<!--        </div>-->
+<!--        <div id="CPSC150-checker" style="position: absolute; left: 270px">-->
+<!--            <input type="checkbox" id="CPSC150" value="CPSC150" onclick="return false;" readonly="readonly">-->
+<!--            <label for="CPSC150">CPSC150/150L</label>-->
+<!--        </div>-->
+<!--        <div id="CPSC250-checker" style="position: absolute; left: 400px">-->
+<!--            <input type="checkbox" id="CPSC250" value="CPSC250" onclick="return false;" readonly="readonly">-->
+<!--            <label for="CPSC250">CPSC250/250L</label>-->
+<!--        </div>-->
+<!--        <div id="CPSC255-checker" style="position: relative; left: 10px">-->
+<!--            <input type="checkbox" id="CPSC255" value="CPSC255" onclick="return false;" readonly="readonly">-->
+<!--            <label for="CPSC255">CPSC255</label>-->
+<!--        </div>-->
+<!--        <div id="CPSC336-checker" style="position: relative; left: 10px">-->
+<!--            <input type="checkbox" id="CPSC336" value="CPSC336" onclick="return false;" readonly="readonly">-->
+<!--            <label for="CPSC336">CPSC336</label>-->
+<!--        </div>-->
+<!--        <div id="CPSC270-checker" style="position: relative; left: 150px; bottom: 117px">-->
+<!--            <input type="checkbox" id="CPSC270" value="CPSC270" onclick="return false;" readonly="readonly">-->
+<!--            <label for="CPSC270">CPSC270</label>-->
+<!--        </div>-->
+<!--        <div id="CPSC280-checker" style="position: relative; left: 150px; bottom: 117px">-->
+<!--            <input type="checkbox" id="CPSC280" value="CPSC280" onclick="return false;" readonly="readonly">-->
+<!--            <label for="CPSC280">CPSC280</label>-->
+<!--        </div>-->
+<!--        <div id="CPSC410-checker" style="position: relative; left: 150px; bottom: 117px">-->
+<!--            <input type="checkbox" id="CPSCs410" value="CPSC410" onclick="return false;" readonly="readonly">-->
+<!--            <label for="CPSCs410">CPSC410</label>-->
+<!--        </div>-->
+<!--        <div id="CPSC4f10-checker" style="position: relative; left: 150px; bottom: 117px">-->
+<!--            <input type="checkbox" id="CPSCd410" value="CPSC410" onclick="return false;" readonly="readonly">-->
+<!--            <label for="CPSCd410">CPSC410</label>-->
+<!--        </div>-->
+<!--        <div id="CPSC4fd10-checker" style="position: relative; left: 150px; bottom: 117px">-->
+<!--            <input type="checkbox" id="CPaSC410" value="CPSC410" onclick="return false;" readonly="readonly">-->
+<!--            <label for="CPaSC410">CPSC410</label>-->
+<!--        </div>-->
+<!--        <div id="a-checker" style="position: relative; left: 150px; bottom: 117px">-->
+<!--            <input type="checkbox" id="s" value="CPSC410" onclick="return false;" readonly="readonly">-->
+<!--            <label for="s">CPSC410</label>-->
+<!--        </div>-->
+
+        <table id="feedback-table" style="margin-left: 10px; border: none">
+        </table>
+    </div>
+    <div id="core-curriculum">
+        <h3 style="position: relative; margin-left: 10px"><b><u>Core Curriculum</u></b></h3>
+        <table style="margin-left: 10px; border: none">
+            <tr style="border: none">
+                <td class="core-curr" style="border: none; font-size: 17px"><input id="AIDE" type="checkbox" value="AIDE" onclick="return false;" readonly="readonly">AIDE</td>&nbsp;
+                <td class="core-curr" style="border: none; font-size: 17px"><input id="AICE" type="checkbox" value="AICE" onclick="return false;" readonly="readonly">AICE</td>&nbsp;
+                <td class="core-curr" style="border: none; font-size: 17px"><input id="AIGM" type="checkbox" value="AIGM" onclick="return false;" readonly="readonly">AIGM</td>&nbsp;
+                <td class="core-curr" style="border: none; font-size: 17px"><input id="AINW" type="checkbox" value="AINW" onclick="return false;" readonly="readonly">AINW</td>&nbsp;
+                <td class="core-curr" style="border: none; font-size: 17px"><input id="AIWT" type="checkbox" value="AIWT" onclick="return false;" readonly="readonly">AIWT</td>&nbsp;
+                <td class="core-curr" style="border: none; font-size: 17px"><input id="WI" type="checkbox" value="WI" onclick="return false;" readonly="readonly">WI</td>&nbsp;
+            </tr>
+            <tr style="border: none">
+                <td class="core-curr" style="border: none; font-size: 17px"><input id="ECON" type="checkbox" value="ECON" onclick="return false;" readonly="readonly">ECON</td>&nbsp;
+                <td class="core-curr" style="border: none; font-size: 17px"><input id="LR" type="checkbox" value="LR" onclick="return false;" readonly="readonly">LR</td>&nbsp;
+                <td class="core-curr" style="border: none; font-size: 17px"><input id="MATH" type="checkbox" value="MATH" onclick="return false;" readonly="readonly">MATH</td>&nbsp;
+                <td class="core-curr" style="border: none; font-size: 17px"><input id="SLL" type="checkbox" value="SLL" onclick="return false;" readonly="readonly">SLL</td>&nbsp;
+                <td class="core-curr" style="border: none; font-size: 17px"><input id="WCL" type="checkbox" value="WCL" onclick="return false;" readonly="readonly">WCL</td>&nbsp;
+            </tr>
+        </table>
+    </div>
+
+</div>
+    <div id = "course-loader" style = "position: absolute; width: 700px; height: 350px; background: white; bottom: 3%; left: 1%">
+        <select id="currentOption" onchange="changeOptions();" name="courses" id="courses" style = "text-align-last: center; margin-top: 10px; position: absolute; left: 300px; width: 12%" >
+            <option id="majorSelect" value="CPSC">CPSC</option>
             <option value="AIDE">AIDE</option>
             <option value="AICE">AICE</option>
             <option value="AIGM">AIGM</option>
             <option value="AINW">AINW</option>
             <option value="AIWT">AIWT</option>
+            <option value="WI">WI</option>
+            <option value="ECON">ECON</option>
+            <option value="LR">LR</option>
+            <option value="MATH">MATH</option>
+            <option value="PHYS">PHYS</option>
+            <option value="SLL">SLL</option>
+            <option value="WCL">WCL</option>
         </select>
+        <br><br><br>
+        <div id="holdOptions">
+        </div>
     </div>
     <div class = "container" id = "table-holder" style = "position: absolute; left: 50%;">
         <table style = "width: 150%; height: 80px; background: white">
@@ -33,58 +126,45 @@
             <tr>
                 <th colspan="2">Fall Semester</th>
                 <th colspan="2">Spring Semester</th>
-                <th colspan="2">Summer Semester</th>
             </tr>
             <tr>
-                <td>CPSC 125</td>
-                <td>3</td>
-                <td>CPSC 150</td>
-                <td>3</td>
-                <td>MATH 130</td>
-                <td>3</td>
+                <td id="plan00">CPSC 125</td>
+                <td id = "credit00">3</td>
+                <td id="plan10">CPSC 150</td>
+                <td id = "credit10">3</td>
 
             </tr>
             <tr>
-                <td>CPSC 125</td>
-                <td>3</td>
-                <td>CPSC 150</td>
-                <td>3</td>
-                <td>MATH 130</td>
-                <td>3</td>
+                <td id="plan01">CPSC 125</td>
+                <td id = "credit01">3</td>
+                <td id="plan11">CPSC 150</td>
+                <td id="credit11">3</td>
             </tr>
             <tr>
-                <td>CPSC 125</td>
-                <td>3</td>
-                <td>CPSC 150</td>
-                <td>3</td>
-                <td>MATH 130</td>
-                <td>3</td>
+                <td id="plan02">CPSC 125</td>
+                <td id="credit02">3</td>
+                <td id="plan12">CPSC 150</td>
+                <td id="credit12">3</td>
 
             </tr>
             <tr>
-                <td>CPSC 125</td>
-                <td>3</td>
-                <td>CPSC 150</td>
-                <td>3</td>
-                <td>MATH 130</td>
-                <td>3</td>
+                <td id="plan03">CPSC 125</td>
+                <td id="credit03">3</td>
+                <td id="plan13">CPSC 150</td>
+                <td id="credit13">3</td>
             </tr>
             <tr>
-                <td>CPSC 125</td>
-                <td>3</td>
-                <td>CPSC 150</td>
-                <td>3</td>
-                <td>MATH 130</td>
-                <td>3</td>
+                <td id="plan04" >CPSC 125</td>
+                <td id="credit04">3</td>
+                <td id="plan14">CPSC 150</td>
+                <td id="credit14">3</td>
 
             </tr>
             <tr>
-                <td>CPSC 125</td>
-                <td>3</td>
-                <td>CPSC 150</td>
-                <td>3</td>
-                <td>MATH 130</td>
-                <td>3</td>
+                <td id="plan05">CPSC 125</td>
+                <td id="credit05">3</td>
+                <td id="plan15">CPSC 150</td>
+                <td id="credit15">3</td>
             </tr>
 
             <tr>
@@ -93,58 +173,45 @@
             <tr>
                 <th colspan="2">Fall Semester</th>
                 <th colspan="2">Spring Semester</th>
-                <th colspan="2">Summer Semester</th>
             </tr>
             <tr>
-                <td>CPSC 125</td>
-                <td>3</td>
-                <td>CPSC 150</td>
-                <td>3</td>
-                <td>MATH 130</td>
-                <td>3</td>
+                <td id="plan20">CPSC 125</td>
+                <td id="credit20">3</td>
+                <td id="plan30">CPSC 150</td>
+                <td id="credit30">3</td>
 
             </tr>
             <tr>
-                <td>CPSC 125</td>
-                <td>3</td>
-                <td>CPSC 150</td>
-                <td>3</td>
-                <td>MATH 130</td>
-                <td>3</td>
+                <td id="plan21">CPSC 125</td>
+                <td id="credit21">3</td>
+                <td id="plan31">CPSC 150</td>
+                <td id="credit31">3</td>
             </tr>
             <tr>
-                <td>CPSC 125</td>
-                <td>3</td>
-                <td>CPSC 150</td>
-                <td>3</td>
-                <td>MATH 130</td>
-                <td>3</td>
+                <td id="plan22">CPSC 125</td>
+                <td id="credit22">3</td>
+                <td id="plan32">CPSC 150</td>
+                <td id="credit32">3</td>
 
             </tr>
             <tr>
-                <td>CPSC 125</td>
-                <td>3</td>
-                <td>CPSC 150</td>
-                <td>3</td>
-                <td>MATH 130</td>
-                <td>3</td>
+                <td id="plan23">CPSC 125</td>
+                <td id="credit23">3</td>
+                <td id="plan33">CPSC 150</td>
+                <td id="credit33">3</td>
             </tr>
             <tr>
-                <td>CPSC 125</td>
-                <td>3</td>
-                <td>CPSC 150</td>
-                <td>3</td>
-                <td>MATH 130</td>
-                <td>3</td>
+                <td id="plan24" >CPSC 125</td>
+                <td id="credit24">3</td>
+                <td id="plan34">CPSC 150</td>
+                <td id="credit34">3</td>
 
             </tr>
             <tr>
-                <td>CPSC 125</td>
-                <td>3</td>
-                <td>CPSC 150</td>
-                <td>3</td>
-                <td>MATH 130</td>
-                <td>3</td>
+                <td id="plan25">CPSC 125</td>
+                <td id="credit25">3</td>
+                <td id="plan35">CPSC 150</td>
+                <td id="credit35">3</td>
             </tr>
 
             <tr>
@@ -153,58 +220,44 @@
             <tr>
                 <th colspan="2">Fall Semester</th>
                 <th colspan="2">Spring Semester</th>
-                <th colspan="2">Summer Semester</th>
             </tr>
             <tr>
-                <td>CPSC 125</td>
-                <td>3</td>
-                <td>CPSC 150</td>
-                <td>3</td>
-                <td>MATH 130</td>
-                <td>3</td>
+                <td id="plan40">CPSC 125</td>
+                <td id="credit40">3</td>
+                <td id="plan50">CPSC 150</td>
+                <td id="credit50">3</td>
+            </tr>
+            <tr>
+                <td id="plan41">CPSC 125</td>
+                <td id="credit41">3</td>
+                <td id="plan51">CPSC 150</td>
+                <td id="credit51">3</td>
+            </tr>
+            <tr>
+                <td id="plan42">CPSC 125</td>
+                <td id="credit42">3</td>
+                <td id="plan52">CPSC 150</td>
+                <td id="credit52">3</td>
 
             </tr>
             <tr>
-                <td>CPSC 125</td>
-                <td>3</td>
-                <td>CPSC 150</td>
-                <td>3</td>
-                <td>MATH 130</td>
-                <td>3</td>
+                <td id="plan43">CPSC 125</td>
+                <td id="credit43">3</td>
+                <td id="plan53">CPSC 150</td>
+                <td id="credit53">3</td>
             </tr>
             <tr>
-                <td>CPSC 125</td>
-                <td>3</td>
-                <td>CPSC 150</td>
-                <td>3</td>
-                <td>MATH 130</td>
-                <td>3</td>
+                <td id="plan44" >CPSC 125</td>
+                <td id="credit44">3</td>
+                <td id="plan54">CPSC 150</td>
+                <td id="credit54">3</td>
 
             </tr>
             <tr>
-                <td>CPSC 125</td>
-                <td>3</td>
-                <td>CPSC 150</td>
-                <td>3</td>
-                <td>MATH 130</td>
-                <td>3</td>
-            </tr>
-            <tr>
-                <td>CPSC 125</td>
-                <td>3</td>
-                <td>CPSC 150</td>
-                <td>3</td>
-                <td>MATH 130</td>
-                <td>3</td>
-
-            </tr>
-            <tr>
-                <td>CPSC 125</td>
-                <td>3</td>
-                <td>CPSC 150</td>
-                <td>3</td>
-                <td>MATH 130</td>
-                <td>3</td>
+                <td id="plan45">CPSC 125</td>
+                <td id="credit45">3</td>
+                <td id="plan55">CPSC 150</td>
+                <td id="credit55">3</td>
             </tr>
 
             <tr>
@@ -213,58 +266,44 @@
             <tr>
                 <th colspan="2">Fall Semester</th>
                 <th colspan="2">Spring Semester</th>
-                <th colspan="2">Summer Semester</th>
             </tr>
             <tr>
-                <td>CPSC 125</td>
-                <td>3</td>
-                <td>CPSC 150</td>
-                <td>3</td>
-                <td>MATH 130</td>
-                <td>3</td>
+                <td id="plan60">CPSC 125</td>
+                <td id="credit60">3</td>
+                <td id="plan70">CPSC 150</td>
+                <td id="credit70">3</td>
+            </tr>
+            <tr>
+                <td id="plan61">CPSC 125</td>
+                <td id="credit61">3</td>
+                <td id="plan71">CPSC 150</td>
+                <td id="credit71">3</td>
+            </tr>
+            <tr>
+                <td id="plan62">CPSC 125</td>
+                <td id="credit62">3</td>
+                <td id="plan72">CPSC 150</td>
+                <td id="credit72">3</td>
 
             </tr>
             <tr>
-                <td>CPSC 125</td>
-                <td>3</td>
-                <td>CPSC 150</td>
-                <td>3</td>
-                <td>MATH 130</td>
-                <td>3</td>
+                <td id="plan63">CPSC 125</td>
+                <td id="credit63">3</td>
+                <td id="plan73">CPSC 150</td>
+                <td id="credit73">3</td>
             </tr>
             <tr>
-                <td>CPSC 125</td>
-                <td>3</td>
-                <td>CPSC 150</td>
-                <td>3</td>
-                <td>MATH 130</td>
-                <td>3</td>
+                <td id="plan64" >CPSC 125</td>
+                <td id="credit64">3</td>
+                <td id="plan74">CPSC 150</td>
+                <td id="credit74">3</td>
 
             </tr>
             <tr>
-                <td>CPSC 125</td>
-                <td>3</td>
-                <td>CPSC 150</td>
-                <td>3</td>
-                <td>MATH 130</td>
-                <td>3</td>
-            </tr>
-            <tr>
-                <td>CPSC 125</td>
-                <td>3</td>
-                <td>CPSC 150</td>
-                <td>3</td>
-                <td>MATH 130</td>
-                <td>3</td>
-
-            </tr>
-            <tr>
-                <td>CPSC 125</td>
-                <td>3</td>
-                <td>CPSC 150</td>
-                <td>3</td>
-                <td>MATH 130</td>
-                <td>3</td>
+                <td id="plan65">CPSC 125</td>
+                <td id="credit65">3</td>
+                <td id="plan75">CPSC 150</td>
+                <td id="credit75">3</td>
             </tr>
 
         </table>
@@ -272,20 +311,956 @@
 
 </body>
 <script>
-    // GOT TOO TIRED, TEST IT. SHOULD RETURN STRING OF MAJORS
+
+    var CPEN = []
+    var CPSC = []
+    var CYBR = []
+    var EENG = []
+    var ENGR = []
+    var PHYS = []
+    var AICE = pullLiberalLearning("AICE")
+    var AIDE = pullLiberalLearning("AIDE")
+    var AIGM = pullLiberalLearning("AIGM")
+    var AINW = pullLiberalLearning("AINW")
+    var AIWT = pullLiberalLearning("AIWT")
+    var ECON = pullLiberalLearning("ECON")
+    var LR = pullLiberalLearning("LR")
+    var MATH = pullLiberalLearning("MATH")
+    var PHYS = pullLiberalLearning("PHYS")
+    var SLL = pullLiberalLearning("SLL")
+    var WCL = pullLiberalLearning("WCL")
+    var WI = pullLiberalLearning("WI")
+    var loadedClasses = []
+    var aiceReq = [3, AICE]
+    var aideReq = [3, AIDE]
+    var aigmReq = [3, AIGM]
+    var ainwReq = [7, AINW]
+    var aiwtReq = [3, AIWT]
+    var wclReq = [6, WCL]
+    var sllReq = [3, SLL]
+    var mathReq = [6,MATH]
+    var lrReq = [3,LR]
+    var econReq = [3,ECON]
+    var WIreq = [5, WI]
+    var electives = []
+    var proElectives = []
+
+    var guide = {
+
+    }
+
+
+    // Drag Functions ____________________________________________________________________________________________________
+
+    function dragElement(elmnt) {
+        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+        if (document.getElementById(elmnt.id + "header")) {
+            /* if present, the header is where you move the DIV from:*/
+            document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+        } else {
+            /* otherwise, move the DIV from anywhere inside the DIV:*/
+            elmnt.onmousedown = dragMouseDown;
+        }
+
+
+        function dragMouseDown(e) {
+            e = e || window.event;
+            e.preventDefault();
+            // get the mouse cursor position at startup:
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            document.onmouseup = closeDragElement;
+            // call a function whenever the cursor moves:
+            document.onmousemove = elementDrag;
+        }
+
+        function elementDrag(e) {
+            e = e || window.event;
+            e.preventDefault();
+            // calculate the new cursor position:
+            pos1 = pos3 - e.clientX;
+            pos2 = pos4 - e.clientY;    
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+
+            // set the element's new position:
+            elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        }
+
+        function closeDragElement() {
+            /* stop moving when mouse button is released:*/
+            document.onmouseup = null;
+            document.onmousemove = null;
+        }
+    }
+
+
+
+
+
+    // ___________________________________________________________________________________________________________________
+
+    loadAllCourses()
+    loadOptions()
+
     $.ajax({
         type: "POST",
         url: "TableLoader",
         data: {
             email: localStorage.getItem("email"),
+            option: "Get Major"
         },
         success: function (data) {
-            console.log(data)
+            localStorage.setItem("major", data.trim())
+            updateDropDown(data.trim())
         },
         error: function (textStatus, errorThrown) {
+            console.log(errorThrown)
+            console.log(textStatus)
 
         }
 
     });
+
+    if (localStorage.getItem("planName") !== "Create New Plan"){
+        $.ajax({
+            type: "POST",
+            url: "TableLoader",
+            async: false,
+            data: {
+                email: localStorage.getItem("email"),
+                planName: localStorage.getItem("planName")
+            },
+            success: function (data) {
+                let requirementData = pullMajorReq(data)
+                electives = requirementData[0]
+                proElectives = requirementData[1]
+                loadedClasses = dataLoader(data)
+            },
+            error: function (textStatus, errorThrown) {
+                console.log(errorThrown)
+                console.log(textStatus)
+
+            }
+
+        });
+    }
+    else {
+        $.ajax({
+            type: "POST",
+            url: "TableLoader",
+            async: false,
+            data: {
+                email: localStorage.getItem("email"),
+            },
+            success: function (data) {
+                let requirementData = pullMajorReq(data)
+                electives = requirementData[0]
+                proElectives = requirementData[1]
+                loadedClasses = dataLoader(data)
+            },
+            error: function (textStatus, errorThrown) {
+                console.log(errorThrown)
+                console.log(textStatus)
+
+            }
+
+        });
+    }
+
+    function loadFeedBack(){
+        let requirements = electives
+        requirements = parseRequirements(requirements)
+        let electiveNum = proElectives[0]
+        for (let i = 0; i < electiveNum; i++){
+            requirements.push("ELECTIVE " + (i+1).toString())
+        }
+        let lengthCnt = 1
+        for (let i = 0; i < requirements.length; i++){
+            if (requirements[i].length > 10){
+                guide["See " + (lengthCnt).toString()] = requirements[i]
+                requirements[i] = "See " + (lengthCnt).toString()
+                lengthCnt++
+            }
+        }
+        let tableDiv = document.getElementById("feedback-table")
+        let lastVal = requirements.length - 1
+        let cnt = 0
+        let rowCnt = 0
+        let subArray  = []
+        for (let i = 0; i < requirements.length; i++){
+            let req = requirements[i]
+            if (cnt < 6){
+                subArray.push(req)
+            }
+            cnt++
+            if (cnt == 6 || i == lastVal){
+                let buildTr = document.createElement("tr")
+                buildTr.setAttribute("id", "dynamic-row" + rowCnt.toString())
+                tableDiv.appendChild(buildTr)
+                let row = document.getElementById("dynamic-row"+rowCnt.toString())
+                row.style.border = "none"
+                for (let j = 0; j < subArray.length; j++){
+                    let buildTd = document.createElement("td")
+                    buildTd.setAttribute("id", subArray[j]+"-row")
+                    buildTd.setAttribute("class", "unique-requirement")
+                    row.appendChild(buildTd)
+                    let tdStyle = document.getElementById(subArray[j]+"-row")
+                    tdStyle.innerHTML=subArray[j]
+                    tdStyle.style.border = "none"
+                    tdStyle.style.fontSize = "10px"
+                    let buildCB = document.createElement("input")
+                    buildCB.setAttribute("id", subArray[j])
+                    buildCB.setAttribute("type", "checkbox")
+                    buildCB.setAttribute("value", subArray[j])
+                    buildCB.setAttribute("readonly", "readonly")
+                    buildCB.onclick = function () {return false;}
+                    buildTd.appendChild(buildCB)
+                }
+                rowCnt++
+                cnt=0
+                subArray = []
+            }
+
+        }
+    }
+    loadFeedBack()
+
+    function getFeedBack(){
+        let requirements = document.getElementsByClassName("unique-requirement")
+        let activeCourses = document.getElementsByClassName("planner-table")
+        activeCourses = Array.from(activeCourses)
+
+        let currCourses = []
+        for (let i = 0; i < activeCourses.length; i++){
+            let course = activeCourses[i].innerHTML
+            currCourses.push(course)
+        }
+
+        for (let i = 0; i < requirements.length; i++){
+            let course = requirements[i].innerText
+            if (course.includes("See")){
+                course = guide[course]
+            }
+
+            if (course.includes("ELECTIVE")){
+                if (requirements[i].childNodes[1].checked == "true"){
+                    continue
+                }
+                else {
+                    let options = proElectives
+                    if (options.length == 2){
+                        let locateNumber = course.split(" ")[1]
+                        locateNumber = parseInt(locateNumber)
+                        let locateCnt = 0
+                        for (let j = 0; j < options[1].length; j++){
+                            let electOpt = options[1][j]
+                            for (let k = 0; k < currCourses.length; k++){
+                                let currentCourseOption = currCourses[k]
+                                if (electOpt === currentCourseOption){
+                                    locateCnt++
+                                    if (locateCnt === locateNumber){
+                                        requirements[i].childNodes[1].checked = "true"
+                                    }
+                                    else{
+                                        continue
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        let totalReq = options[0]
+                        let locateNumber = course.split(" ")[1]
+                        locateNumber = parseInt(locateNumber)
+                        let locateCnt = 0
+                        options.shift()
+                        for (let j = 0; j < options.length; j++){
+                            let subOption = options[j]
+                            let numReq = subOption[0]
+                            let arrReq = subOption[1]
+                            for (let k = 0; k < currCourses.length; k++){
+                                let currentCourse = currCourses[k]
+                                if (arrReq.includes(currentCourse)){
+                                    locateCnt++
+                                    if (locateCnt === locateNumber || locateCnt == totalReq){
+                                        requirements[i].childNodes[1].checked = "true"
+                                    }
+                                    else{
+                                        continue;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            if (course.includes("/")){
+                course = course.split("/")
+                for (let j = 0; j < course.length; j++){
+                    let subCourse = course[j]
+                    if (currCourses.includes(subCourse)){
+                        requirements[i].childNodes[1].checked = "true"
+                    }
+                }
+            continue;
+            }
+
+            if (currCourses.includes(course)){
+                requirements[i].childNodes[1].checked = "true"
+            }
+
+        }
+
+        let coreReq = document.getElementsByClassName("core-curr")
+        for (let i = 0; i < coreReq.length; i++){
+            let coreVal = coreReq[i].innerText
+            let checkPresent = hasMet(coreVal)
+            if (checkPresent){
+                coreReq[i].childNodes[0].checked = "true"
+            }
+        }
+
+
+    }
+
+    getFeedBack()
+
+    function hasMet(category){
+        let activeCourses = document.getElementsByClassName("planner-table")
+        let courseNames = []
+        activeCourses = Array.from(activeCourses)
+        for (let i = 0; i < activeCourses.length; i++){
+            let course = activeCourses[i].innerHTML.trim()
+            if (course.length == 0){
+                continue;
+            }
+            courseNames.push(course)
+        }
+
+        if (category === "electives"){
+            let requirements = matchRequirements(category)
+            requirements = parseRequirements(requirements)
+            let met = electiveIncludes(requirements, courseNames)
+            return met
+        }
+        else {
+            let requirements = matchRequirements(category)
+            let creditsNeeded = requirements[0]
+            requirements = requirements[1]
+            let metCnt = 0;
+            for (let i = 0; i < requirements.length; i++){
+                let req = requirements[i]
+                let course = req[0]
+                let credits = parseInt(req[2])
+                for (let j = 0; j < courseNames.length; j++){
+                    let activeCourse = courseNames[j]
+                    if (course === activeCourse){
+                        metCnt += credits
+                    }
+                }
+
+            }
+            if (metCnt >= creditsNeeded){
+                return true
+            }
+            else{
+                return false
+            }
+        }
+
+    }
+
+
+    function electiveIncludes(requirements, courses){
+        for (let i = 0; i < requirements.length; i++){
+            let req = requirements[i]
+            let metCnt = 0
+            for (let j = 0; j < courses.length; j++){
+                let course = courses[j]
+                if (req.includes("/")){
+                    if (req.includes(course)){
+                        metCnt++
+                    }
+                }
+                else{
+                    if (req === course){
+                        metCnt++;
+                    }
+                }
+            }
+            if (metCnt == 0){
+                return false
+            }
+        }
+        return true
+    }
+
+    function parseRequirements(requirements){
+        for (let i = 0; i < requirements.length; i++){
+            let requirement = requirements[i]
+            if (requirement.includes("/")){
+                let slashIndex = requirement.indexOf("/")
+                let indexAfterSlash = slashIndex+1
+                if (is_numeric(requirement[indexAfterSlash])){
+                    let divReq = requirement.split("/")
+                    let stopCharIndex
+                    for (let j = 0; j < divReq[0].length; j++){
+                        let char = divReq[0][j]
+                        if (is_numeric(char)){
+                            stopCharIndex = j
+                            break;
+                        }
+                    }
+                    let prevCourse = divReq[0].slice(0, stopCharIndex)
+                    prevCourse += divReq[1]
+                    requirements.push(prevCourse)
+                    requirements[i] = divReq[0]
+                }
+            }
+        }
+        return requirements
+    }
+
+    function is_numeric(str){
+        return /^\d+$/.test(str);
+    }
+
+
+    /**
+     * Returns [electives, proelectives]
+     * proelectives = [number required, course options] OR
+     * [totalNumberRequired, [number required, course options], [number required, course options]]
+     * @param data
+     */
+    function pullMajorReq(data){
+        let elective
+        let proElective
+        let parseIndex = 0
+        data = data.split("\n")
+        for (let i = 0; i < data.length; i++){
+            data[i] = data[i].trim()
+        }
+
+        parseIndex = data.indexOf("")
+        data = data.splice(parseIndex)
+        elective = data
+        elective.splice(parseIndex)
+        elective.shift()
+        elective.pop()
+        elective = elective[0]
+        elective = elective.split(",")
+
+        proElective = data
+        proElective.shift()
+        proElective = proElective[0]
+
+        if (proElective.includes(",")){
+            let fullReq = []
+            let totalReq = proElective[0]
+            fullReq.push(totalReq)
+            totalReq = totalReq.substring(2, totalReq.length - 2)
+            totalReq = totalReq.split(",")
+            for (let i = 0; i < totalReq.length; i++){
+                let reqLine = totalReq[i]
+                reqLine = reqLine.replace("(", "").replace(")", "")
+                reqLine = reqLine.split(":")
+                let numReq = reqLine[0]
+                let options = reqLine[1].split(";")
+                let req = [numReq, options]
+                fullReq.push(req)
+            }
+            return fullReq
+        }
+        else {
+            proElective = proElective.replace("(", "").replace(")", "")
+            proElective = proElective.split(":")
+            let numReq = proElective[0]
+            let options = proElective[1].split(";")
+            let req = [numReq, options]
+            return [elective, req]
+
+        }
+
+    }
+
+    function pullLiberalLearning(LLC){
+        let filepath = "PCSE/" + "LLC/" + LLC + ".txt";
+        var courses = []
+        let fullCourses = []
+        $.ajax({
+            type: "GET",
+            url: filepath,
+            dataType: "text",
+            async: false,
+            success: function (data) {
+                courses = data
+                courses = courses.split("\n")
+            }
+        });
+
+        for (let i = 0; i < courses.length; i++){
+            let currentCourse = courses[i].split("\t");
+            let courseName = currentCourse[0];
+            let courseDescription = currentCourse[1]
+            let courseCredits = currentCourse[2]
+            let courseBundle = [courseName, courseDescription, courseCredits]
+            fullCourses.push(courseBundle)
+        }
+        return fullCourses
+    }
+
+    function dataLoader(data){
+        let pulledCourses = []
+        data = data.split("\n")
+        let blankLineIndex = getBlankLineIndex(data)
+
+        for (let i = 0; i < blankLineIndex; i++){
+            let line = data[i].trim().split(",")
+            line = fillArray(line)
+            for (let j = 0; j < line.length; j++){
+                let course = line[j];
+                pulledCourses.push(course)
+                let credits = getNumCredits(course)
+                document.getElementById("plan" + i.toString() + j.toString()).innerHTML = course;
+                document.getElementById("credit" + i.toString() + j.toString()).innerHTML = credits
+                document.getElementById("plan" + i.toString() + j.toString()).setAttribute("class", "planner-table")
+            }
+        }
+        return pulledCourses
+    }
+
+
+    function getNumCredits(course){
+        let classType = course.substring(0,4)
+
+        if (course.trim().length == 0){
+            return ""
+        }
+
+        switch (classType){
+            case ("CPEN"):
+                for (let i = 0; i < CPEN.length; i++){
+                    let courseInfo = CPEN[i].split("\t");
+                    let courseTitle = courseInfo[0];
+                    if (course === courseTitle){
+                        let credits = courseInfo[2];
+                        return credits
+                    }
+                }
+
+            case ("CPSC"):
+                for (let i = 0; i < CPSC.length; i++){
+                    let courseInfo = CPSC[i].split("\t");
+                    let courseTitle = courseInfo[0];
+                    if (course === courseTitle){
+                        let credits = courseInfo[2];
+                        return credits
+                    }
+                }
+
+            case ("CYBR"):
+                for (let i = 0; i < CYBR.length; i++){
+                    let courseInfo = CYBR[i].split("\t");
+                    let courseTitle = courseInfo[0];
+                    if (course === courseTitle){
+                        let credits = courseInfo[2];
+                        return credits
+                    }
+                }
+
+            case ("EENG"):
+                for (let i = 0; i < EENG.length; i++){
+                    let courseInfo = EENG[i].split("\t");
+                    let courseTitle = courseInfo[0];
+                    if (course === courseTitle){
+                        let credits = courseInfo[2];
+                        return credits
+                    }
+                }
+
+            case ("ENGR"):
+                for (let i = 0; i < ENGR.length; i++){
+                    let courseInfo = ENGR[i].split("\t");
+                    let courseTitle = courseInfo[0];
+                    if (course === courseTitle){
+                        let credits = courseInfo[2];
+                        return credits
+                    }
+                }
+
+            case ("PHYS"):
+                for (let i = 0; i < PHYS.length; i++){
+                    let courseInfo = PHYS[i].split("\t");
+                    let courseTitle = courseInfo[0];
+                    if (course === courseTitle){
+                        let credits = courseInfo[2];
+                        return credits
+                    }
+                }
+
+
+        }
+        return "3";
+    }
+
+    function fillArray(array){
+        if (array.length == 6){
+            return array
+        }
+        else {
+            let addition = 6 - array.length
+            for (let i = 0; i < addition; i++){
+                array.push(" ")
+            }
+            return array;
+        }
+    }
+
+    function getBlankLineIndex(data){
+        for (let i = 0; i < data.length; i++){
+            let line = data[i].trim();
+            if (line.length == 0){
+                return i;
+            }
+        }
+    }
+
+    function getFilePath(major){
+        major = major.toUpperCase()
+        let filePath = "PCSE/" + major + ".txt"
+        return filePath
+    }
+
+    function loadCourse(filepath){
+        var course = []
+        $.ajax({
+            type: "GET",
+            url: filepath,
+            dataType: "text",
+            async: false,
+            success: function (data) {
+                course = data
+                course = course.split("\n")
+            }
+        });
+        return course;
+    }
+
+    function loadAllCourses(){
+        CPEN = loadCourse(getFilePath("CPEN"))
+        CPSC = loadCourse(getFilePath("CPSC"))
+        CYBR = loadCourse(getFilePath("CYBR"))
+        EENG = loadCourse(getFilePath("EENG"))
+        ENGR = loadCourse(getFilePath("ENGR"))
+        PHYS = loadCourse(getFilePath("PHYS"))
+    }
+
+    function updateDropDown(data){
+        switch (data.trim()){
+            case ("Computer Science"):
+                document.getElementById("majorSelect").innerHTML = "CPSC"
+                document.getElementById("majorSelect").value = "CPSC"
+                return
+
+            case ("Computer Engineering"):
+                document.getElementById("majorSelect").innerHTML = "CPEN"
+                document.getElementById("majorSelect").value = "CPEN"
+                return
+
+            case ("Cyber Security"):
+                document.getElementById("majorSelect").innerHTML = "CYBR"
+                document.getElementById("majorSelect").value = "CYBR"
+                return
+
+            case ("Electrical Engineering"):
+                document.getElementById("majorSelect").innerHTML = "EENG"
+                document.getElementById("majorSelect").value = "EENG"
+                return
+
+            case ("Information Science"):
+                document.getElementById("majorSelect").innerHTML = "BSIS"
+                document.getElementById("majorSelect").value = "BSIS"
+                return
+        }
+    }
+
+    function loadOptions(){
+        let major = document.getElementById("majorSelect").value;
+        let courseOptions = []
+        if (major === "CPEN") { courseOptions = CPEN } 
+        else if (major === "CPSC") { courseOptions = CPSC } else if (major === "CYBR") { courseOptions = CYBR }
+        else if (major === "EENG") { courseOptions = EENG } else if (major === "ENGR") { courseOptions = ENGR } 
+        else if (major === "PHYS") { courseOptions = PHYS }
+        else {
+            courseOptions = pullLiberalLearning(major)
+        }
+        courseOptions = getCourseNames(courseOptions)
+        courseOptions = removeActiveCourses(courseOptions)
+        optionLoader(courseOptions, major)
+    }
+
+    function changeOptions(){
+        let major = document.getElementById("currentOption").value;
+        let courseOptions = []
+        if (major === "CPEN") { courseOptions = CPEN }
+        else if (major === "CPSC") { courseOptions = CPSC } else if (major === "CYBR") { courseOptions = CYBR }
+        else if (major === "EENG") { courseOptions = EENG } else if (major === "ENGR") { courseOptions = ENGR }
+        else if (major === "PHYS") { courseOptions = PHYS }
+        else {
+            courseOptions = pullLiberalLearning(major)
+        }
+        courseOptions = getCourseNames(courseOptions)
+        courseOptions = removeActiveOptions(courseOptions)
+        optionLoader(courseOptions, major)
+    }
+
+    function removeActiveCourses(courseOptions){
+        let pulledCourses = []
+        if (localStorage.getItem("planName") !== "Create New Plan"){
+            $.ajax({
+                type: "POST",
+                url: "TableLoader",
+                async: false,
+                data: {
+                    email: localStorage.getItem("email"),
+                    planName: localStorage.getItem("planName")
+                },
+                success: function (data) {
+                    pulledCourses = dataLoader(data)
+                },
+                error: function (textStatus, errorThrown) {
+                    console.log(errorThrown)
+                    console.log(textStatus)
+
+                }
+
+            });
+        }
+        else {
+            $.ajax({
+                type: "POST",
+                url: "TableLoader",
+                async: false,
+                data: {
+                    email: localStorage.getItem("email"),
+                },
+                success: function (data) {
+                    pulledCourses = dataLoader(data)
+                },
+                error: function (textStatus, errorThrown) {
+                    console.log(errorThrown)
+                    console.log(textStatus)
+
+                }
+
+            });
+        }
+
+        let dupCourses = []
+
+        for (let i = 0; i < courseOptions.length; i++){
+            let course = courseOptions[i]
+            for (let j = 0; j < pulledCourses.length; j++){
+                let pulledCourse = pulledCourses[j]
+                if (pulledCourse.includes(course)){
+                    dupCourses.push(course)
+                }
+            }
+        }
+        dupCourses = [...new Set(dupCourses)]
+
+        let origCourses = []
+        for (let i = 0; i < courseOptions.length; i++){
+            let course = courseOptions[i]
+            if (!dupCourses.includes(course)){
+                origCourses.push(course)
+            }
+        }
+        return origCourses
+    }
+
+    function removeActiveOptions(courseOptions){
+        let activeElections = document.getElementsByClassName("planner-table")
+        activeElections = Array.from(activeElections)
+
+        let dupCourses = []
+
+        for (let i = 0; i < courseOptions.length; i++){
+            let course = courseOptions[i]
+            for (let j = 0; j < activeElections.length; j++){
+                let pulledCourse = activeElections[j].innerHTML
+                if (pulledCourse.includes(course)){
+                    dupCourses.push(course)
+                }
+            }
+        }
+        dupCourses = [...new Set(dupCourses)]
+
+        let origCourses = []
+        for (let i = 0; i < courseOptions.length; i++){
+            let course = courseOptions[i]
+            if (!dupCourses.includes(course)){
+                origCourses.push(course)
+            }
+        }
+
+        return origCourses
+
+    }
+
+    function optionLoader(courseOptions, major){
+        document.getElementById("holdOptions").innerHTML = ''
+        let mainDiv = document.getElementById("course-loader")
+        let optionDiv = document.getElementById("holdOptions")
+
+        let initialIndex = 0
+        let cnt = 0
+        for (let i = 0; i < courseOptions.length; i++){
+            if (cnt == 7){
+                initialIndex += 1
+                cnt = 0;
+            }
+            let courseName = courseOptions[i]
+            let courseBody = document.createElement("p")
+            courseBody.setAttribute("id", major + ":" + courseName)
+            courseBody.setAttribute("class", "courseOptions")
+            courseBody.innerHTML = courseName.replace("*","")
+            optionDiv.appendChild(courseBody)
+
+            let courseStyling = document.getElementById(major + ":" + courseName)
+            courseStyling.style.fontSize = "13px"
+            courseStyling.style.position = "absolute"
+            courseStyling.style.border = "1px solid black"
+            courseStyling.style.width = "12%"
+            courseStyling.style.height = "17px"
+            courseStyling.style.textAlign = "center"
+            courseStyling.style.left = getLeft(i)
+            courseStyling.style.cursor = "grab"
+            if (i < 7){
+                courseStyling.style.top = "9%"
+            }
+            else {
+                courseStyling.style.top = initialIndex.toString() + "9%"
+            }
+            dragElement(document.getElementById(major + ":" + courseName))
+            cnt += 1
+        }
+        mainDiv.appendChild(optionDiv)
+    }
+
+    function getCourseNames(courses){
+        let courseNames = []
+        for (let i = 0; i < courses.length; i++){
+            let currentCourse = courses[i]
+            if (currentCourse.length == 0){
+                continue;
+            }
+            if (typeof currentCourse === "object"){
+                let courseName = currentCourse[0]
+                if (courseName.includes(" ")){
+                    console.log(courseName)
+                    courseName = courseName.split(" ")[0]
+                }
+                courseNames.push(courseName)
+            }
+            else {
+                let courseName = currentCourse.split("\t")[0]
+                if (courseName.includes(" ")){
+                    courseName = courseName.split(" ")[0]
+                }
+                courseNames.push(courseName)
+            }
+
+        }
+        return courseNames
+    }
+
+    function matchRequirements(category) {
+        switch (category) {
+            case ("pro electives"):
+                return proElectives
+
+            case ("electives"):
+                return electives
+
+            case ("AIDE"):
+                return aideReq
+
+            case ("AICE"):
+                return aiceReq
+
+            case ("AIGM"):
+                return aigmReq
+
+            case ("AINW"):
+                return ainwReq
+
+            case ("AIWT"):
+                return aiwtReq
+
+            case ("WI"):
+                return WIreq
+
+            case ("ECON"):
+                return econReq
+
+            case ("LR"):
+                return lrReq
+
+            case ("MATH"):
+                return mathReq
+
+            case ("SLL"):
+                return sllReq
+
+            case ("WCL"):
+                return wclReq
+        }
+    }
+
+    function getLeft(i){
+        i += 1
+        let val
+        if (i < 7){
+            val = i
+        }
+        else {
+            val = i%7
+        }
+
+        switch (val){
+
+            case (0):
+                return "605px"
+
+            case (1):
+                return "5px"
+
+            case (2):
+                return "105px"
+
+            case (3):
+                return "205px"
+
+            case (4):
+                return "305px"
+
+            case (5):
+                return "405px"
+
+            case (6):
+                return "505px"
+
+        }
+    }
+
+    // dragElement(document.getElementById("CPSC:CPSC125"))
+
+
+
 </script>
 </html>

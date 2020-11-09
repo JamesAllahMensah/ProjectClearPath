@@ -1,0 +1,3 @@
+ECON200	The Economic Way of Thinking	3	""
+ECON201	Principles of Macroeconomics	3	""
+ECON202	Principles of Microeconomics	3	""

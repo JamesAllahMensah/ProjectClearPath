@@ -41,6 +41,10 @@
 </div>
 </body>
 <script>
+    window.onbeforeunload = function(e){
+        gapi.auth2.getAuthInstance().signOut();
+    };
+
     function navMain() {
         window.location.href = "secondary.html"
     }
@@ -61,8 +65,8 @@
                 email: email,
             },
             success: function (data) {
-                console.log("YERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR")
-                // redirect(data);
+                console.log("Bet")
+                redirect(data);
             },
             error: function (textStatus, errorThrown) {
 
@@ -73,11 +77,12 @@
 
     function redirect(response){
         if (response === "Account Added!"){
-            // window.location.href = "main.html"
+            window.location.href = "main.html"
         }
         else{
             localStorage.setItem("info", response)
-            // window.location.href = "welcome.html"
+            window.location.href = "welcome.html"
+            // window.location.href = "questionnaire.html"
         }
     }
 

@@ -1,0 +1,7 @@
+COMM239	Argumentation	3	""
+CPSC110	Introduction to Computing	3	""
+CPSC140	Introduction to Computer Programming with Multimedia	3	""
+CPSC150	Introduction to Programming	3	""
+PHIL101	Critical Thinking	3	""
+PHIL205	Anatomy of Thought	3	""
+PHIL207	Ethical Issues in Business: A Critical Thinking Approach	3	""

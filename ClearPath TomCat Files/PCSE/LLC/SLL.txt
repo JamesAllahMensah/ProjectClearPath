@@ -1,0 +1,19 @@
+ARAB201	Intermediate Arabic	3	ARAB102
+ARAB202 Intermediate Arabic II	3	ARAB201
+CHIN201	Intermediate Chinese I	3	CHIN102
+CHIN202	Intermediate Chinese II	3	CHIN201
+FREN200	Effective Communications in French	3	""
+FREN201 Intermediate French I	3	""
+FREN202	Intermediate French II	3	""
+GERM200	Effective Communications in German	3	""
+GERM201 Intermediate German I	3	""
+GERM202	Intermediate German II	3	""
+GREK201	Intermediate Ancient Greek I	3	""
+HBRW201 Intermediate Hebrew I	3	""
+ITAL201 Intermediate Italian I	3	""
+ITAL202	Intermediate Italian II	3	""
+LATN200	Latin and Its Living Legacy	3	""
+LATN202	Intermediate Latin II	3	""
+SPAN200	Effective Communications in Spanish	3	""
+SPAN201 Intermediate Spanish I	3	""
+SPAN202	Intermediate Spanish II	3	""

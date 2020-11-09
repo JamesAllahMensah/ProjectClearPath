@@ -12,6 +12,7 @@
       <list>
         <option value="CSS File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -24,8 +25,14 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/PCSE" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Program Files\Apache Software Foundation\Tomcat 8.5\webapps\clearpath\PCSE" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -42,7 +49,10 @@
       <workItem from="1602385174917" duration="2052000" />
       <workItem from="1602426786397" duration="23552000" />
       <workItem from="1602970535754" duration="17676000" />
-      <workItem from="1603303922531" duration="3332000" />
+      <workItem from="1603303922531" duration="27761000" />
+      <workItem from="1604615098897" duration="44771000" />
+      <workItem from="1604725490692" duration="4669000" />
+      <workItem from="1604958444287" duration="3271000" />
     </task>
     <servers />
   </component>
@@ -54,9 +64,27 @@
       <screen x="0" y="0" width="1504" height="963" />
     </state>
     <state x="483" y="229" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1504.963/2256.0.1920.1040@0.0.1504.963" timestamp="1601335266915" />
-    <state x="409" y="222" key="run.anything.popup" timestamp="1601333759592">
-      <screen x="0" y="0" width="1504" height="963" />
+    <state x="2996" y="275" key="FileChooserDialogImpl" timestamp="1604959253993">
+      <screen x="2256" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2996" y="275" key="FileChooserDialogImpl/0.0.1504.963/2256.0.1920.1040@2256.0.1920.1040" timestamp="1604959253993" />
+    <state x="2717" y="165" key="SettingsEditor" timestamp="1604695284027">
+      <screen x="2256" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2717" y="165" key="SettingsEditor/0.0.1504.963/2256.0.1920.1040@2256.0.1920.1040" timestamp="1604695284027" />
+    <state x="2923" y="73" width="585" height="894" key="find.popup" timestamp="1604695247115">
+      <screen x="2256" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2923" y="73" width="585" height="894" key="find.popup/0.0.1504.963/2256.0.1920.1040@2256.0.1920.1040" timestamp="1604695247115" />
+    <state x="2778" y="240" key="run.anything.popup" timestamp="1604646556248">
+      <screen x="2256" y="0" width="1920" height="1040" />
     </state>
     <state x="409" y="222" key="run.anything.popup/0.0.1504.963/2256.0.1920.1040@0.0.1504.963" timestamp="1601333759592" />
+    <state x="2778" y="240" key="run.anything.popup/0.0.1504.963/2256.0.1920.1040@2256.0.1920.1040" timestamp="1604646556248" />
+    <state x="2617" y="241" key="search.everywhere.popup" timestamp="1604695251672">
+      <screen x="2256" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2459" y="435" key="search.everywhere.popup/0.0.1504.963/2256.0.1080.1880@2256.0.1080.1880" timestamp="1604623069841" />
+    <state x="2617" y="241" key="search.everywhere.popup/0.0.1504.963/2256.0.1920.1040@2256.0.1920.1040" timestamp="1604695251672" />
   </component>
 </project>
