@@ -9,9 +9,10 @@ public class Student {
 	private String plan;
 	private String advisor;
 	private String planNames;
+	private String planMajor;
 
 	public Student(String name, String email, String major, String minor, boolean isGrad, String plan, String advisor,
-			String planNames) {
+			String planNames, String planMajor) {
 
 		this.name = name;
 		this.email = email;
@@ -21,6 +22,7 @@ public class Student {
 		this.plan = plan;
 		this.advisor = advisor;
 		this.planNames = planNames;
+		this.planMajor = planMajor;
 	}
 	
 	public String getName() {

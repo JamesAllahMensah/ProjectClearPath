@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,94 +40,114 @@ public class TableLoader extends HttpServlet{
 		String minor = null;
 		String minorStr = null;
 		
-		if (option != null && option.equals("Get Major")) {
-			try {
-				major = getMajor(email);
-				out.print(major);
-				return;
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				out.print(e.getLocalizedMessage());
+		
+		try {
+			savedPlan = getSavedPlan(email, planName); // Get Individual Saved Plan
+			out.println(savedPlan);	// Print Individual Saved Plan
+			major = getPlanMajor(email, planName);	// Get Individual Plan Major
+			if (major.contains(",")) {	// If doubleMajor
+				if (major.contains(":")) {	// If contains minor too
+					
+				}
+
+			}
+			else if (major.contains(":")) {	// If Minor
+				
+				
+			}
+			else {
+				majorStr = getMajorRequirements(major.replace(";", ""));
+				out.println(majorStr);
+
 			}
 			
+		} catch (ClassNotFoundException e) {
+			out.println(e.getLocalizedMessage());
 		}
 		
-		// TEST AND FIX
-		// SHOULD PRINT OUT THE PLAN DATA, THEN THE MAJOR REQUIREMENTS, THEN MINOR REQUIREMENTS
-		
-		
-		if (planName == null) {				// If new User
-			try {
-				major = getMajor(email);	// Get Major
-				if (major.contains(";")) {	
-					String[] majorArr = major.split(";");
-					for (String s: majorArr) {
-						majorStr = getMajorString(s);
-						out.print(majorStr);
-						out.print(";");
-					}
-					out.println("");
-					for (String s: majorArr) {
-						majorStr = getMajorRequirements(s);
-						out.print(majorStr);
-						out.print(";");		// If Multiple Majors, gets both plans and separates by semicolon
-					}
-				}
-				else {
-					majorStr = getMajor(email);
-					majorStr = getMajorString(majorStr);
-					out.println(majorStr);
-					majorStr = getMajorRequirements(getMajor(email));
-					out.println("");
-					out.println(majorStr);	// If One Major, get plan
-				}
-				
-				minor = getMinor(email);		// Gets Minor
-				
-				if (minor != null) {			// If has a minor, prints out string requirements
-					out.println("");
-					minorStr = getMinorRequirements(minor);
-					out.println(minorStr);
-				}
-				
-			} catch (ClassNotFoundException e) {
-				out.print(e.getLocalizedMessage());
-			}
-		}
-		else {
-			try {
-				savedPlan = getSavedPlan(email, planName); // Get saved plan
-				out.println(savedPlan);
-				out.println("");
-				
-				major = getMajor(email);
-				if (major.contains(";")) {
-					String[] majorArr = major.split(";");
-					for (String s: majorArr) {
-						majorStr = getMajorRequirements(s);
-						out.print(majorStr);
-						out.print(";");
-					}
-				}
-				else {
-					majorStr = getMajor(email);
-					majorStr = getMajorRequirements(majorStr);
-					out.println(majorStr);
-				}
-				
-				minor = getMinor(email);
-				
-				if (minor != null) {
-					out.println("");
-					minorStr = getMinorRequirements(minor);
-					out.println(minorStr);
-				}
-				
-			} catch (ClassNotFoundException e) {
-				out.println(e.getLocalizedMessage());
-			}
+	}
+	
+	public static String getPlanMajor(String email, String planName) throws ClassNotFoundException{
+		String currentPlanMajor = retrievePlanMajor(email);
+		String currentPlanNames = retrievePlanNames(email);
+		if (!currentPlanMajor.contains(";")) {
+			return currentPlanMajor;
 		}
 		
+		ArrayList<String> names = new ArrayList<String>();
+		ArrayList<String> majors = new ArrayList<String>();
+		
+		Scanner nameScanner = new Scanner(currentPlanNames);
+		nameScanner.useDelimiter(";");
+		while (nameScanner.hasNext()) {
+			String nameInst = nameScanner.next();
+			names.add(nameInst);
+		}
+		
+		int addIndex = names.indexOf(planName);
+		
+		Scanner majorScanner = new Scanner(currentPlanMajor);
+		majorScanner.useDelimiter(";");
+		while (majorScanner.hasNext()) {
+			String majorInst = majorScanner.next();
+			majors.add(majorInst);
+		}
+		
+		String pulledMajor = majors.get(addIndex);
+		return pulledMajor;
+		
+	}
+	
+	public static String retrievePlanNames(String email) throws ClassNotFoundException {
+		String planName;
+
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			String connectionUrl = "jdbc:sqlserver://DESKTOP-RI159U3:1433;databaseName=ClearPath";
+			Connection connection = DriverManager.getConnection(connectionUrl, USER, PASSWORD);
+			String SQL = "SELECT PlanName FROM Student WHERE Email = ?";
+			PreparedStatement statement = connection.prepareStatement(SQL);
+			statement.setString(1, email);
+			ResultSet rs = statement.executeQuery();
+
+			boolean res = rs.next();
+			
+			planName = rs.getString("PlanName");
+			
+			connection.close();
+			return planName;
+			
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public static String retrievePlanMajor(String email) throws ClassNotFoundException {
+		String planMajor;
+
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			String connectionUrl = "jdbc:sqlserver://DESKTOP-RI159U3:1433;databaseName=ClearPath";
+			Connection connection = DriverManager.getConnection(connectionUrl, USER, PASSWORD);
+			String SQL = "SELECT PlanMajor FROM Student WHERE Email = ?";
+			PreparedStatement statement = connection.prepareStatement(SQL);
+			statement.setString(1, email);
+			ResultSet rs = statement.executeQuery();
+
+			boolean res = rs.next();
+			
+			planMajor = rs.getString("PlanMajor");
+			
+			connection.close();
+			return planMajor;
+			
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	public static String getSavedPlan(String email, String planName) throws ClassNotFoundException {
@@ -183,7 +204,7 @@ public class TableLoader extends HttpServlet{
 			statement.setString(1, email);
 			ResultSet rs = statement.executeQuery();
 
-			String name, emailAdd, major, minor, fullPlan, advisor, planNames;
+			String name, emailAdd, major, minor, fullPlan, advisor, planNames, planMajor;
 			boolean isGrad;
 
 			while (rs.next()) {
@@ -195,7 +216,8 @@ public class TableLoader extends HttpServlet{
 				fullPlan = rs.getString(6);
 				advisor = rs.getString(7);
 				planNames = rs.getString(8);
-				Student student = new Student(name, emailAdd, major, minor, isGrad, fullPlan, advisor, planNames);
+				planMajor = rs.getString(9);
+				Student student = new Student(name, emailAdd, major, minor, isGrad, fullPlan, advisor, planNames, planMajor);
 				students.add(student);
 			}
 			
@@ -219,7 +241,7 @@ public class TableLoader extends HttpServlet{
 			statement.setString(1, email);
 			ResultSet rs = statement.executeQuery();
 
-			String name, emailAdd, major, minor, fullPlan, advisor, planNames;
+			String name, emailAdd, major, minor, fullPlan, advisor, planNames, planMajor;
 			boolean isGrad;
 
 			while (rs.next()) {
@@ -231,7 +253,8 @@ public class TableLoader extends HttpServlet{
 				fullPlan = rs.getString(6);
 				advisor = rs.getString(7);
 				planNames = rs.getString(8);
-				Student student = new Student(name, emailAdd, major, minor, isGrad, fullPlan, advisor, planNames);
+				planMajor = rs.getString(9);
+				Student student = new Student(name, emailAdd, major, minor, isGrad, fullPlan, advisor, planNames, planMajor);
 				students.add(student);
 			}
 			
@@ -250,7 +273,7 @@ public class TableLoader extends HttpServlet{
 		case ("Computer Science"):
 			str = "CPSC150,CPSC150L,MATH140,AOI/ECON/FL,ENGL123\n"
 			+ "CPSC250,CPSC250L,MATH240,AOI/ECON/FL,AOI/ECON/FL,AOI/ECON/FL\n"
-			+ "CPSC255,PHYS151/201,PHYS151L/201L,MATH235/260/ENGR340/PHYS340,ENGL223,AOI/ECON/FL\n"
+			+ "CPSC255,PHYS151/201,PHYS151L/201L,MATH235,ENGL223,AOI/ECON/FL\n"
 			+ "CPSC270,CPSC280,PHYS152/PHYS202,PHYS152L/202L,CPEN214,ENGR213\n"
 			+ "CPSC327,CPSC360,PHYS341,PRO ELECTIVE,AOI/ECON/FL\n"
 			+ "CPSC410,CPSC420,CPEN371W,AINW,AINW-Lab,PRO ELECTIVE\n"
@@ -265,8 +288,8 @@ public class TableLoader extends HttpServlet{
 			+ "PHYS202,PHYS202L,CPEN315,CPEN315L,ENGR213,CPSC270\n"
 			+ "ENGR211,ENGR211L,CPSC327,PHYS341,CPEN371W,MATH320\n"
 			+ "ENGR212,ENGR212L,CPEN414,CPSC420,ECON201/202,PRO ELECTIVE\n"
-			+ "CPEN431,CPSC410,CPEN498W,CHEM121,CHEM121L,PRO ELECTIVE\n"
-			+ "CPEN498W,CHEM122,AOI,AOI,ELECTIVE";
+			+ "CPEN431,CPSC410,CPEN498W I,CHEM121,CHEM121L,PRO ELECTIVE\n"
+			+ "CPEN498W II,CHEM122,AOI,AOI,ELECTIVE";
 			return str;
 		
 		case ("Cyber Security"):
@@ -283,12 +306,12 @@ public class TableLoader extends HttpServlet{
 		case ("Electrical Engineering"):
 			str = "MATH140,ENGL123,PHYS201,PHYS201L,FL\n"
 			+ "MATH240,ENGR121,PHYS202,PHYS202L,CPSC150,CPSC150L\n"
-			+ "MATH320,ENGR211,ENGR211L,ENGR210,CPEN214,CPSC250,CPSC250L\n"
-			+ "MATH250/ENGR213,ENGR212,ENGR212L,ENGR311,ENGR311L,EENG221,ENGL223\n"
-			+ "EENG321,EENG321L,EENG361,EENG361L,PHYS341,CPSC256,CPEN371W\n"
+			+ "MATH320,ENGR211/ENGR211L,ENGR210,CPEN214,CPSC250,CPSC250L\n"		// ENGR211/211L
+			+ "MATH250/ENGR213,ENGR212,ENGR212L,ENGR311/ENGR311L,EENG221,ENGL223\n"	// ENGR311/311L
+			+ "EENG321/EENG321L,EENG361,EENG361L,PHYS341,CPSC256,CPEN371W\n"		// EENG321/321L
 			+ "PRO ELECTIVE,PRO ELECTIVE,ECON201/202,AOI,AOI\n"
-			+ "EENG498W,PRO ELECTIVE,CHEM121,CHEM121L,AOI,MATH335\n"
-			+ "EENG498W,PRO ELECTIVE,CHEM122,AOI,ELECTIVE";
+			+ "EENG498W I,PRO ELECTIVE,CHEM121,CHEM121L,AOI,MATH335\n"
+			+ "EENG498W II,PRO ELECTIVE,CHEM122,AOI,ELECTIVE";
 			return str;
 			
 		case ("Information Science"):
@@ -299,7 +322,7 @@ public class TableLoader extends HttpServlet{
 			+ "CPSC350,ACCT200,CPEN371W,CPSC440,PRO ELECTIVE\n"
 			+ "CPSC351,PSYC202,BUSN303,PRO ELECTIVE,ELECTIVE\n"
 			+ "PRO ELECTIVE,PRO ELECTIVE,ELECTIVE,ELECTIVE,ELECTIVE\n"
-			+ "CPSC445W,ELECTIVE,ELECTIVE,ELECTIVE\n";
+			+ "CPSC445W,ELECTIVE,ELECTIVE,ELECTIVE";
 			
 			return str;
 			
@@ -318,7 +341,7 @@ public class TableLoader extends HttpServlet{
 			req += "CPEN214,CPEN371W,CPSC150/150L,CPSC250/250L," +
 			"CPSC255,CPSC270,CPSC280,CPSC327,CPSC360,CPSC410,CPSC420," +
 			"MATH140/MATH148,MATH240,PHYS151/151L,PHYS201/201L," +
-			"PHYS152/152L,PHYS202/202L,PHYS340/ENGR210/MATH235/MATH260,ENGR213,"+
+			"PHYS152/152L,PHYS202/202L,PHYS340/ENGR210/MATH235/MATH260,ENGR213,CPSC498,"+
 			"PHYS341\n"
 			+ "3:(CPSC425;CPSC428;CPSC440;CPSC450;CPSC460;CPSC470;CPSC471;CPSC472;CPSC475;CPSC480;CPSC485;"
 			+ "CPSC495;MATH380;PHYS421;PHYS441)";
@@ -327,7 +350,7 @@ public class TableLoader extends HttpServlet{
 		case ("Computer Engineering"):
 			req += "CHEM121/121L,CHEM122,PHYS201,PHYS201L,PHYS202,PHYS202L,PHYS341," +
 			"MATH140/MATH148,MATH240,MATH320,ENGR121,ENGR210,ENGR211/211L,ENGR212/212L,ENGR213," +
-			"CPEN214,CPEN315/315L,CPEN371W,CPEN414,CPEN431,CPEN498W,CPSC150/150L,CPSC250/250L" +
+			"CPEN214,CPEN315/315L,CPEN371W,CPEN414,CPEN431,CPEN498W,CPSC150/150L,CPSC250/250L," +
 			"CPSC255,CPSC270,CPSC327,CPSC410,CPSC420\n"
 			+ "6:(CPEN422;CPEN495;CPSC360;CPSC425;CPSC428;CPSC440;CPSC450;" +
 			"CPSC470;CPSC471;CPSC472;CPSC475;CPSC480;CPSC495;PHYS421)";
@@ -353,9 +376,9 @@ public class TableLoader extends HttpServlet{
 			req += "CPSC150/150L,CPSC250/250L,MATH125,MATH135/MATH140/MATH148,MATH235/MATH260,"
 			+ "ACCT200,ECON201,ECON202,BUSN303,PSYC202,CPSC445W,CPSC215,CPSC216,CPSC335,CPSC350,CPSC351,"
 			+ "CPSC440,CPEN371W\n"
-			+ "4:(1:(CPSC336;CPSC428;CPSC429),1:(CPSC255;CPSC280;CPSC480),1:(BUSN305;CPSC336CPSC441),"
-			+ "CPSC336,CPSC428,CPSC429,CPSC255,CPSC280,CPSC480,BUSN305,CPSC3336,CPSC441,CPSC430,CPSC475,PSYC303,PSYC313,"
-			+ "FINC300,MGMT450)";
+			+ "4:(1:(CPSC336;CPSC428;CPSC429),1:(CPSC255;CPSC280;CPSC480),1:(BUSN305;CPSC336;CPSC441),"
+			+ "CPSC336/CPSC428/CPSC429/CPSC255/CPSC280/CPSC480/BUSN305/CPSC3336/CPSC441/CPSC430/CPSC475/PSYC303/PSYC313/"
+			+ "FINC300/MGMT450)";
 			return req;
 			
 		}
@@ -385,8 +408,8 @@ public class TableLoader extends HttpServlet{
 	
 	
 	public static void main(String [] args) throws ClassNotFoundException {
-		String email = "jimmy.allahmensah.17@cnu.edu";
-		String major = getMajor(email);
+		String email = "Billy.Bob.17@cnu.edu";
+		String major = getMajorRequirements(getPlanMajor(email, "Plan A"));
 		System.out.println(major);
 	}
 

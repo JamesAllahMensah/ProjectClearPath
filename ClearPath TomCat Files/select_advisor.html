@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/Article">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href=https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <title>Login Page</title>
+
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Welcome, Please Select Your Advisor</h5>
+                    <div style="margin-left: 20%" id = "advisor">
+                        <select name="advisor" id="advisor-list">
+                            <option value="Select Advisor">Select Advisor</option>
+                            <option value="Mohammad Alamalag">Mohammad Alamalag</option>
+                            <option value="Johnathan Backens">Johnathan Backens</option>
+                            <option value="Amy Baird">Amy Baird</option>
+                            <option value="Robert Bruntz">Robert Bruntz</option>
+                            <option value="Leon Cole">Leon Cole</option>
+                            <option value="David Conner">David Conner</option>
+                            <option value="Farideh Doost Mohammadi">Farideh Doost Mohammadi</option>
+                            <option value="Dave Doughty">Dave Doughty</option>
+                            <option value="Rob Fersch">Rob Fersch</option>
+                            <option value="Ryan Fisher">Ryan Fisher</option>
+                            <option value="Roberto Flores">Roberto Flores</option>
+                            <option value="Costa Gerousis">Costa Gerousis</option>
+                            <option value="David Gore">David Gore</option>
+                            <option value="Ronald Hanchin">Ronald Hanchin</option>
+                            <option value="David Heddle">David Heddle</option>
+                            <option value="Samuel Henry">Samuel Henry</option>
+                            <option value="Hessam Keshtkar Vanashi">Hessam Keshtkar Vanashi</option>
+                            <option value="Christopher Kreider">Christopher Kreider</option>
+                            <option value="Lynn Lambert">Lynn Lambert</option>
+                            <option value="Michael Lapke">Michael Lapke</option>
+                            <option value="Scott McElfresh">Scott McElfresh</option>
+                            <option value="Keith Perkins">Keith Perkins</option>
+                            <option value="William Phelps">William Phelps</option>
+                            <option value="Nazli Siasi">Nazli Siasi</option>
+                            <option value="Antonio Siochi">Antonio Siochi</option>
+                            <option value="Marissa Walker">Marissa Walker</option>
+                            <option value="Elizabeth Ward">Elizabeth Ward</option>
+                            <option value="Ming Zhang">Ming Zhang</option>
+                        </select>
+                        <br><br>
+                        <button style="margin-left: 18%" type="button" onclick="setAdvisor()" class="btn btn-secondary">Submit</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+
+    function setAdvisor(){
+        let email = localStorage.getItem("email")
+        let advisor = document.getElementsByName("advisor")[0].value
+        if (advisor.trim() === "Select Advisor"){
+            alert("Please Select an Advisor.")
+            return false
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "NewUserServlet",
+            data: {
+                email: email,
+                advisor: advisor
+            },
+            success: function (data) {
+                data = data.trim()
+                if (data === "Success."){
+                    window.location.href = "main.html"
+                }
+            },
+            error: function (textStatus, errorThrown) {
+
+            }
+
+        });
+    }
+
+    // $.ajax({
+    //     type: "POST",
+    //     url: "LoginServlet",
+    //     data: {
+    //         username: name,
+    //         email: email,
+    //     },
+    //     success: function (data) {
+    //         console.log(data)
+    //         redirect(data);
+    //     },
+    //     error: function (textStatus, errorThrown) {
+    //
+    //     }
+    //
+    // });
+
+</script>
+</html>

@@ -1,5 +1,5 @@
 ENGL353	Writing for the Profession	3	""
-CPEN371	Computer Ethics	3	""
+CPEN371W	Computer Ethics	3	""
 MATH301	Writing in Mathematics	3	""
 MATH303	Mathematics in Context	3	""
 CYBR498W	CyberSecurity Capstone	3	""

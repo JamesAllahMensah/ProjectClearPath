@@ -14,303 +14,552 @@
         padding: 5px;
         text-align: center;
     }
+
+    .tooltip {
+        position: relative;
+    }
+
+    /* Tooltip text */
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 250px;
+        background-color: lightgrey;
+        color: black;
+        text-align: center;
+        border-radius: 6px;
+
+        position: absolute;
+        z-index: 1;
+        right: 10px;
+        top: -70px;
+    }
+
+    .clear-course {
+        background: transparent;
+        border: none transparent;
+        outline: none;
+        cursor: pointer;
+        color: red;
+    }
+
+    /* Show the tooltip text when you mouse over the tooltip container */
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+    }
+
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 50; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 30%; /* Could be more or less, depending on screen size */
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .courseOptions {
+        cursor: pointer;
+    }
+
+    .courseOptions:active {
+        cursor: grab;
+    }
+
+    button {
+        background: transparent;
+        border: none;
+        color: white
+    }
+
+    button:hover {
+        cursor: pointer
+    }
+
+
+
 </style>
 <head>
     <meta charset="UTF-8">
     <title>Plan</title>
 </head>
 <body style = "background: #1e376d;">
-<div id = "planner-prompt" style = "position: absolute; width: 550px; height: 400px; background: white; top: 7%; left: 5%">
-<!--    <h3 style ="text-align: center">FEEDBACK</h3><hr style ="width: 80%">-->
+<button onclick = "navMain()">Return to Main Menu</button>
+<button onclick = "savePlan()">Save Plan</button>
+<button onclick = "exportPlan()">Export Plan</button>
+<div id = "planner-prompt" style = "position: absolute; width: 550px; height: 400px; background: #F0F0F0; top: 7%; left: 5%; border: 5px solid black">
+    <!--    <h3 style ="text-align: center">FEEDBACK</h3><hr style ="width: 80%">-->
     <div id="program-requirements">
-        <h3 style="margin-left: 10px"><b><u>Program Requirements</u></b></h3>
-<!--        <div id="CPEN214-checker" style="position: absolute; left: 10px">-->
-<!--            <input type="checkbox" id="CPEN214" value="CPEN214" onclick="return false;" readonly="readonly">-->
-<!--            <label for="CPEN214">CPEN214</label>-->
-<!--        </div>-->
-<!--        <div id="CPEN371-checker" style="position: absolute; left: 140px">-->
-<!--            <input type="checkbox" id="CPEN371" value="CPEN371" onclick="return false;" readonly="readonly">-->
-<!--            <label for="CPEN371">CPEN371</label>-->
-<!--        </div>-->
-<!--        <div id="CPSC150-checker" style="position: absolute; left: 270px">-->
-<!--            <input type="checkbox" id="CPSC150" value="CPSC150" onclick="return false;" readonly="readonly">-->
-<!--            <label for="CPSC150">CPSC150/150L</label>-->
-<!--        </div>-->
-<!--        <div id="CPSC250-checker" style="position: absolute; left: 400px">-->
-<!--            <input type="checkbox" id="CPSC250" value="CPSC250" onclick="return false;" readonly="readonly">-->
-<!--            <label for="CPSC250">CPSC250/250L</label>-->
-<!--        </div>-->
-<!--        <div id="CPSC255-checker" style="position: relative; left: 10px">-->
-<!--            <input type="checkbox" id="CPSC255" value="CPSC255" onclick="return false;" readonly="readonly">-->
-<!--            <label for="CPSC255">CPSC255</label>-->
-<!--        </div>-->
-<!--        <div id="CPSC336-checker" style="position: relative; left: 10px">-->
-<!--            <input type="checkbox" id="CPSC336" value="CPSC336" onclick="return false;" readonly="readonly">-->
-<!--            <label for="CPSC336">CPSC336</label>-->
-<!--        </div>-->
-<!--        <div id="CPSC270-checker" style="position: relative; left: 150px; bottom: 117px">-->
-<!--            <input type="checkbox" id="CPSC270" value="CPSC270" onclick="return false;" readonly="readonly">-->
-<!--            <label for="CPSC270">CPSC270</label>-->
-<!--        </div>-->
-<!--        <div id="CPSC280-checker" style="position: relative; left: 150px; bottom: 117px">-->
-<!--            <input type="checkbox" id="CPSC280" value="CPSC280" onclick="return false;" readonly="readonly">-->
-<!--            <label for="CPSC280">CPSC280</label>-->
-<!--        </div>-->
-<!--        <div id="CPSC410-checker" style="position: relative; left: 150px; bottom: 117px">-->
-<!--            <input type="checkbox" id="CPSCs410" value="CPSC410" onclick="return false;" readonly="readonly">-->
-<!--            <label for="CPSCs410">CPSC410</label>-->
-<!--        </div>-->
-<!--        <div id="CPSC4f10-checker" style="position: relative; left: 150px; bottom: 117px">-->
-<!--            <input type="checkbox" id="CPSCd410" value="CPSC410" onclick="return false;" readonly="readonly">-->
-<!--            <label for="CPSCd410">CPSC410</label>-->
-<!--        </div>-->
-<!--        <div id="CPSC4fd10-checker" style="position: relative; left: 150px; bottom: 117px">-->
-<!--            <input type="checkbox" id="CPaSC410" value="CPSC410" onclick="return false;" readonly="readonly">-->
-<!--            <label for="CPaSC410">CPSC410</label>-->
-<!--        </div>-->
-<!--        <div id="a-checker" style="position: relative; left: 150px; bottom: 117px">-->
-<!--            <input type="checkbox" id="s" value="CPSC410" onclick="return false;" readonly="readonly">-->
-<!--            <label for="s">CPSC410</label>-->
-<!--        </div>-->
+        <h3 style="margin-left: 15px"><b><i>Program Requirements</i></b></h3>
+        <div class="tooltip">
+            <p style="font-size: 10px; position: absolute; right: 10px; top: -55px">View Hidden Courses</p>
+            <span id="guide-ref" style="font-size: 10px" class="tooltiptext">
+            </span>
+        </div>
 
         <table id="feedback-table" style="margin-left: 10px; border: none">
         </table>
     </div>
     <div id="core-curriculum">
-        <h3 style="position: relative; margin-left: 10px"><b><u>Core Curriculum</u></b></h3>
+        <h3 style="position: relative; margin-left: 15px"><b><i>Core Curriculum</i></b></h3>
         <table style="margin-left: 10px; border: none">
             <tr style="border: none">
-                <td class="core-curr" style="border: none; font-size: 17px"><input id="AIDE" type="checkbox" value="AIDE" onclick="return false;" readonly="readonly">AIDE</td>&nbsp;
-                <td class="core-curr" style="border: none; font-size: 17px"><input id="AICE" type="checkbox" value="AICE" onclick="return false;" readonly="readonly">AICE</td>&nbsp;
-                <td class="core-curr" style="border: none; font-size: 17px"><input id="AIGM" type="checkbox" value="AIGM" onclick="return false;" readonly="readonly">AIGM</td>&nbsp;
-                <td class="core-curr" style="border: none; font-size: 17px"><input id="AINW" type="checkbox" value="AINW" onclick="return false;" readonly="readonly">AINW</td>&nbsp;
-                <td class="core-curr" style="border: none; font-size: 17px"><input id="AIWT" type="checkbox" value="AIWT" onclick="return false;" readonly="readonly">AIWT</td>&nbsp;
-                <td class="core-curr" style="border: none; font-size: 17px"><input id="WI" type="checkbox" value="WI" onclick="return false;" readonly="readonly">WI</td>&nbsp;
+                <td class="core-curr" style="border: none; font-size: 17px"><input id="AIDE" type="checkbox" value="AIDE" onclick="return false;" readonly="readonly"><b>AIDE</b></td>&nbsp;
+                <td class="core-curr" style="border: none; font-size: 17px"><input id="AICE" type="checkbox" value="AICE" onclick="return false;" readonly="readonly"><b>AICE</b></td>&nbsp;
+                <td class="core-curr" style="border: none; font-size: 17px"><input id="AIGM" type="checkbox" value="AIGM" onclick="return false;" readonly="readonly"><b>AIGM</b></td>&nbsp;
+                <td class="core-curr" style="border: none; font-size: 17px"><input id="AINW" type="checkbox" value="AINW" onclick="return false;" readonly="readonly"><b>AINW</b></td>&nbsp;
+                <td class="core-curr" style="border: none; font-size: 17px"><input id="AIWT" type="checkbox" value="AIWT" onclick="return false;" readonly="readonly"><b>AIWT</b></td>&nbsp;
+                <td class="core-curr" style="border: none; font-size: 17px"><input id="WI" type="checkbox" value="WI" onclick="return false;" readonly="readonly"><b>WI</b></td>&nbsp;
             </tr>
             <tr style="border: none">
-                <td class="core-curr" style="border: none; font-size: 17px"><input id="ECON" type="checkbox" value="ECON" onclick="return false;" readonly="readonly">ECON</td>&nbsp;
-                <td class="core-curr" style="border: none; font-size: 17px"><input id="LR" type="checkbox" value="LR" onclick="return false;" readonly="readonly">LR</td>&nbsp;
-                <td class="core-curr" style="border: none; font-size: 17px"><input id="MATH" type="checkbox" value="MATH" onclick="return false;" readonly="readonly">MATH</td>&nbsp;
-                <td class="core-curr" style="border: none; font-size: 17px"><input id="SLL" type="checkbox" value="SLL" onclick="return false;" readonly="readonly">SLL</td>&nbsp;
-                <td class="core-curr" style="border: none; font-size: 17px"><input id="WCL" type="checkbox" value="WCL" onclick="return false;" readonly="readonly">WCL</td>&nbsp;
+                <td class="core-curr" style="border: none; font-size: 17px"><input id="ECON" type="checkbox" value="ECON" onclick="return false;" readonly="readonly"><b>ECON</b></td>&nbsp;
+                <td class="core-curr" style="border: none; font-size: 17px"><input id="LR" type="checkbox" value="LR" onclick="return false;" readonly="readonly"><b>LR</b></td>&nbsp;
+                <td class="core-curr" style="border: none; font-size: 17px"><input id="MATH" type="checkbox" value="MATH" onclick="return false;" readonly="readonly"><b>MATH</b></td>&nbsp;
+                <td class="core-curr" style="border: none; font-size: 17px"><input id="SLL" type="checkbox" value="SLL" onclick="return false;" readonly="readonly"><b>SLL</b></td>&nbsp;
+                <td class="core-curr" style="border: none; font-size: 17px"><input id="WCL" type="checkbox" value="WCL" onclick="return false;" readonly="readonly"><b>WCL</b></td>&nbsp;
+                <td class="core-curr" style="border: none; font-size: 17px"><input id="ADDSCI" type="checkbox" value="ADDSCI" onclick="return false;" readonly="readonly"><b>ADDSCI</b></td>&nbsp;
             </tr>
         </table>
     </div>
 
 </div>
-    <div id = "course-loader" style = "position: absolute; width: 700px; height: 350px; background: white; bottom: 3%; left: 1%">
-        <select id="currentOption" onchange="changeOptions();" name="courses" id="courses" style = "text-align-last: center; margin-top: 10px; position: absolute; left: 300px; width: 12%" >
-            <option id="majorSelect" value="CPSC">CPSC</option>
-            <option value="AIDE">AIDE</option>
-            <option value="AICE">AICE</option>
-            <option value="AIGM">AIGM</option>
-            <option value="AINW">AINW</option>
-            <option value="AIWT">AIWT</option>
-            <option value="WI">WI</option>
-            <option value="ECON">ECON</option>
-            <option value="LR">LR</option>
-            <option value="MATH">MATH</option>
-            <option value="PHYS">PHYS</option>
-            <option value="SLL">SLL</option>
-            <option value="WCL">WCL</option>
-        </select>
-        <br><br><br>
-        <div id="holdOptions">
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="course-information" style="text-align: center">
         </div>
     </div>
-    <div class = "container" id = "table-holder" style = "position: absolute; left: 50%;">
-        <table style = "width: 150%; height: 80px; background: white">
-            <tr>
-                <th colspan="6">First Year</th>
-            </tr>
-            <tr>
-                <th colspan="2">Fall Semester</th>
-                <th colspan="2">Spring Semester</th>
-            </tr>
-            <tr>
-                <td id="plan00">CPSC 125</td>
-                <td id = "credit00">3</td>
-                <td id="plan10">CPSC 150</td>
-                <td id = "credit10">3</td>
 
-            </tr>
-            <tr>
-                <td id="plan01">CPSC 125</td>
-                <td id = "credit01">3</td>
-                <td id="plan11">CPSC 150</td>
-                <td id="credit11">3</td>
-            </tr>
-            <tr>
-                <td id="plan02">CPSC 125</td>
-                <td id="credit02">3</td>
-                <td id="plan12">CPSC 150</td>
-                <td id="credit12">3</td>
+</div>
 
-            </tr>
-            <tr>
-                <td id="plan03">CPSC 125</td>
-                <td id="credit03">3</td>
-                <td id="plan13">CPSC 150</td>
-                <td id="credit13">3</td>
-            </tr>
-            <tr>
-                <td id="plan04" >CPSC 125</td>
-                <td id="credit04">3</td>
-                <td id="plan14">CPSC 150</td>
-                <td id="credit14">3</td>
-
-            </tr>
-            <tr>
-                <td id="plan05">CPSC 125</td>
-                <td id="credit05">3</td>
-                <td id="plan15">CPSC 150</td>
-                <td id="credit15">3</td>
-            </tr>
-
-            <tr>
-                <th colspan="6">Second Year</th>
-            </tr>
-            <tr>
-                <th colspan="2">Fall Semester</th>
-                <th colspan="2">Spring Semester</th>
-            </tr>
-            <tr>
-                <td id="plan20">CPSC 125</td>
-                <td id="credit20">3</td>
-                <td id="plan30">CPSC 150</td>
-                <td id="credit30">3</td>
-
-            </tr>
-            <tr>
-                <td id="plan21">CPSC 125</td>
-                <td id="credit21">3</td>
-                <td id="plan31">CPSC 150</td>
-                <td id="credit31">3</td>
-            </tr>
-            <tr>
-                <td id="plan22">CPSC 125</td>
-                <td id="credit22">3</td>
-                <td id="plan32">CPSC 150</td>
-                <td id="credit32">3</td>
-
-            </tr>
-            <tr>
-                <td id="plan23">CPSC 125</td>
-                <td id="credit23">3</td>
-                <td id="plan33">CPSC 150</td>
-                <td id="credit33">3</td>
-            </tr>
-            <tr>
-                <td id="plan24" >CPSC 125</td>
-                <td id="credit24">3</td>
-                <td id="plan34">CPSC 150</td>
-                <td id="credit34">3</td>
-
-            </tr>
-            <tr>
-                <td id="plan25">CPSC 125</td>
-                <td id="credit25">3</td>
-                <td id="plan35">CPSC 150</td>
-                <td id="credit35">3</td>
-            </tr>
-
-            <tr>
-                <th colspan="6">Third Year</th>
-            </tr>
-            <tr>
-                <th colspan="2">Fall Semester</th>
-                <th colspan="2">Spring Semester</th>
-            </tr>
-            <tr>
-                <td id="plan40">CPSC 125</td>
-                <td id="credit40">3</td>
-                <td id="plan50">CPSC 150</td>
-                <td id="credit50">3</td>
-            </tr>
-            <tr>
-                <td id="plan41">CPSC 125</td>
-                <td id="credit41">3</td>
-                <td id="plan51">CPSC 150</td>
-                <td id="credit51">3</td>
-            </tr>
-            <tr>
-                <td id="plan42">CPSC 125</td>
-                <td id="credit42">3</td>
-                <td id="plan52">CPSC 150</td>
-                <td id="credit52">3</td>
-
-            </tr>
-            <tr>
-                <td id="plan43">CPSC 125</td>
-                <td id="credit43">3</td>
-                <td id="plan53">CPSC 150</td>
-                <td id="credit53">3</td>
-            </tr>
-            <tr>
-                <td id="plan44" >CPSC 125</td>
-                <td id="credit44">3</td>
-                <td id="plan54">CPSC 150</td>
-                <td id="credit54">3</td>
-
-            </tr>
-            <tr>
-                <td id="plan45">CPSC 125</td>
-                <td id="credit45">3</td>
-                <td id="plan55">CPSC 150</td>
-                <td id="credit55">3</td>
-            </tr>
-
-            <tr>
-                <th colspan="6">Fourth Year</th>
-            </tr>
-            <tr>
-                <th colspan="2">Fall Semester</th>
-                <th colspan="2">Spring Semester</th>
-            </tr>
-            <tr>
-                <td id="plan60">CPSC 125</td>
-                <td id="credit60">3</td>
-                <td id="plan70">CPSC 150</td>
-                <td id="credit70">3</td>
-            </tr>
-            <tr>
-                <td id="plan61">CPSC 125</td>
-                <td id="credit61">3</td>
-                <td id="plan71">CPSC 150</td>
-                <td id="credit71">3</td>
-            </tr>
-            <tr>
-                <td id="plan62">CPSC 125</td>
-                <td id="credit62">3</td>
-                <td id="plan72">CPSC 150</td>
-                <td id="credit72">3</td>
-
-            </tr>
-            <tr>
-                <td id="plan63">CPSC 125</td>
-                <td id="credit63">3</td>
-                <td id="plan73">CPSC 150</td>
-                <td id="credit73">3</td>
-            </tr>
-            <tr>
-                <td id="plan64" >CPSC 125</td>
-                <td id="credit64">3</td>
-                <td id="plan74">CPSC 150</td>
-                <td id="credit74">3</td>
-
-            </tr>
-            <tr>
-                <td id="plan65">CPSC 125</td>
-                <td id="credit65">3</td>
-                <td id="plan75">CPSC 150</td>
-                <td id="credit75">3</td>
-            </tr>
-
-        </table>
+<div id = "course-loader" style = "position: absolute; width: 700px; height: 350px; background: #F0F0F0; bottom: 3%; left: 1%;border: 3px solid black">
+    <select id="currentOption" onchange="changeOptions();" name="courses" id="courses" style = "text-align-last: center; margin-top: 10px; position: absolute; left: 300px; width: 12%;background: #F0F0F0" >
+        <option id="majorSelect" value="CPSC">CPSC</option>
+        <option id="CPSC-Select" value="CPSC">CPSC</option>
+        <option id="CPEN-Select" value="CPEN">CPEN</option>
+        <option id="CYBR-Select" value="CYBR">CYBR</option>
+        <option id="EENG-Select" value="EENG">EENG</option>
+        <option id="ENGR-Select" value="ENGR">ENGR</option>
+        <option id="BSIS-Select" value="BSIS">BSIS</option>
+        <option value="AIDE">AIDE</option>
+        <option value="AICE">AICE</option>
+        <option value="ADDSCI">ADDSCI</option>
+        <option value="AIGM">AIGM</option>
+        <option value="AINW">AINW</option>
+        <option value="AIWT">AIWT</option>
+        <option value="WI">WI</option>
+        <option value="ECON">ECON</option>
+        <option value="LR">LR</option>
+        <option value="MATH">MATH</option>
+        <option value="PHYS">PHYS</option>
+        <option value="SLL">SLL</option>
+        <option value="WCL">WCL</option>
+    </select>
+    <br><br><br>
+    <div id="holdOptions">
     </div>
+</div>
+<div class = "container" id = "table-holder" style = "position: absolute; left: 50%;">
+    <table style = "z-index: -10; width: 90%; background: #F0F0F0; height: 50px; table-layout: fixed; border: 3px solid black">
+        <tr>
+            <th colspan="4">First Year</th>
+        </tr>
+        <tr>
+            <th style="background: grey" colspan="2">Fall Semester</th>
+            <th style="background: grey" colspan="2">Spring Semester</th>
+        </tr>
+        <tr>
+
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan00"> CPSC 150</td>
+            <td id = "credit00">3</td>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan10"> CPSC 150</td>
+            <td id = "credit10">3</td>
+
+        </tr>
+        <tr>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan01">CPSC 125</td>
+            <td id = "credit01">3</td>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan11">CPSC 150</td>
+            <td id="credit11">3</td>
+        </tr>
+        <tr>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan02">CPSC 125</td>
+            <td id="credit02">3</td>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan12">CPSC 150</td>
+            <td id="credit12">3</td>
+
+        </tr>
+        <tr>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan03">CPSC 125</td>
+            <td id="credit03">3</td>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan13">CPSC 150</td>
+            <td id="credit13">3</td>
+        </tr>
+        <tr>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan04">CPSC 125</td>
+            <td id="credit04">3</td>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan14">CPSC 150</td>
+            <td id="credit14">3</td>
+
+        </tr>
+        <tr>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan05">CPSC 125</td>
+            <td id="credit05">3</td>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan15">CPSC 150</td>
+            <td id="credit15">3</td>
+        </tr>
+
+        <tr>
+            <th colspan="4">Second Year</th>
+        </tr>
+        <tr>
+            <th style="background: grey" colspan="2">Fall Semester</th>
+            <th style="background: grey" colspan="2">Spring Semester</th>
+        </tr>
+        <tr>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan20">CPSC 125</td>
+            <td id="credit20">3</td>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan30">CPSC 150</td>
+            <td id="credit30">3</td>
+
+        </tr>
+        <tr>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan21">CPSC 125</td>
+            <td id="credit21">3</td>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan31">CPSC 150</td>
+            <td id="credit31">3</td>
+        </tr>
+        <tr>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan22">CPSC 125</td>
+            <td id="credit22">3</td>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan32">CPSC 150</td>
+            <td id="credit32">3</td>
+
+        </tr>
+        <tr>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan23">CPSC 125</td>
+            <td id="credit23">3</td>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan33">CPSC 150</td>
+            <td id="credit33">3</td>
+        </tr>
+        <tr>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)"id="plan24">CPSC 125</td>
+            <td id="credit24">3</td>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)"id="plan34">CPSC 150</td>
+            <td id="credit34">3</td>
+
+        </tr>
+        <tr>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan25">CPSC 125</td>
+            <td id="credit25">3</td>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan35">CPSC 150</td>
+            <td id="credit35">3</td>
+        </tr>
+
+        <tr>
+            <th colspan="4">Third Year</th>
+        </tr>
+        <tr>
+            <th style="background: grey" colspan="2">Fall Semester</th>
+            <th style="background: grey" colspan="2">Spring Semester</th>
+        </tr>
+        <tr>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan40">CPSC 125</td>
+            <td id="credit40">3</td>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan50">CPSC 150</td>
+            <td id="credit50">3</td>
+        </tr>
+        <tr>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan41">CPSC 125</td>
+            <td id="credit41">3</td>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan51">CPSC 150</td>
+            <td id="credit51">3</td>
+        </tr>
+        <tr>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan42">CPSC 125</td>
+            <td id="credit42">3</td>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan52">CPSC 150</td>
+            <td id="credit52">3</td>
+
+        </tr>
+        <tr>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan43">CPSC 125</td>
+            <td id="credit43">3</td>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan53">CPSC 150</td>
+            <td id="credit53">3</td>
+        </tr>
+        <tr>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan44" >CPSC 125</td>
+            <td id="credit44">3</td>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan54">CPSC 150</td>
+            <td id="credit54">3</td>
+
+        </tr>
+        <tr>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan45">CPSC 125</td>
+            <td id="credit45">3</td>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan55">CPSC 150</td>
+            <td id="credit55">3</td>
+        </tr>
+
+        <tr>
+            <th colspan="4">Fourth Year</th>
+        </tr>
+        <tr>
+            <th style="background: grey" colspan="2">Fall Semester</th>
+            <th style="background: grey" colspan="2">Spring Semester</th>
+        </tr>
+        <tr>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan60">CPSC 125</td>
+            <td id="credit60">3</td>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan70">CPSC 150</td>
+            <td id="credit70">3</td>
+        </tr>
+        <tr>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan61">CPSC 125</td>
+            <td id="credit61">3</td>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan71">CPSC 150</td>
+            <td id="credit71">3</td>
+        </tr>
+        <tr>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan62">CPSC 125</td>
+            <td id="credit62">3</td>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan72">CPSC 150</td>
+            <td id="credit72">3</td>
+
+        </tr>
+        <tr>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan63">CPSC 125</td>
+            <td id="credit63">3</td>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan73">CPSC 150</td>
+            <td id="credit73">3</td>
+        </tr>
+        <tr>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan64" >CPSC 125</td>
+            <td id="credit64">3</td>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan74">CPSC 150</td>
+            <td id="credit74">3</td>
+
+        </tr>
+        <tr>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan65">CPSC 125</td>
+            <td id="credit65">3</td>
+            <td onmouseenter="showCloseButton(this)" onmouseleave="hideCloseButton(this)" id="plan75">CPSC 150</td>
+            <td id="credit75">3</td>
+        </tr>
+
+    </table>
+</div>
 
 </body>
 <script>
+    // ________________________________________________________________
+    // Modal Information
+    var modal = document.getElementById("myModal");
+    var span = document.getElementsByClassName("close")[0];
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    function showCourseInformation(specCourse){
+        specCourse = specCourse.innerHTML
+        let courseFamily = document.getElementById("currentOption").value
+        let majorArr = chooseMajorOptions(courseFamily)
+        let firstIndex = majorArr[0]
+        if (typeof firstIndex === "string"){
+            for (let i = 0; i < majorArr.length; i++){
+                let majorLine = majorArr[i]
+                let courseInfo = majorLine.split("\t")
+                if (courseInfo.length == 8){
+                    courseInfo.pop()
+                }
+                let courseName = courseInfo[0]
+                if (courseName.includes(" ")){
+                    let courseTitle = courseName.split(" ")
+                    let actualCourseName = courseTitle[0]
+                    courseInfo[0] = actualCourseName
+                    courseTitle.shift()
+                    let fullTitle = ""
+                    for (let j = 0; j < courseTitle.length; j++){
+                        fullTitle += " " + courseTitle[j]
+                    }
+                    fullTitle = fullTitle.trim()
+                    courseInfo.splice(1, 0, fullTitle)
+                }
+
+                let course = courseInfo[0]
+                if (course.trim() === specCourse.trim()){
+                    let title = courseInfo[1]
+                    let credits = courseInfo[2]
+                    let description = courseInfo[3]
+                    let prereq = courseInfo[4]
+                    let coreq = courseInfo[5]
+
+                    let modalDiv = document.getElementsByClassName("modal-content")[0]
+                    modalDiv.children[1].innerHTML = ""
+
+                    let infoDiv = document.getElementById("course-information")
+
+                    let headerInfo = document.createElement("h3")
+                    headerInfo.innerHTML = course + " - " + credits + " Credits"
+                    infoDiv.appendChild(headerInfo)
+
+                    let subHeaderInfo = document.createElement("h4")
+                    subHeaderInfo.innerHTML = title
+
+
+                    infoDiv.appendChild(subHeaderInfo)
+
+                    let descriptionInfo = document.createElement("p")
+                    descriptionInfo.innerHTML = description
+                    infoDiv.appendChild(descriptionInfo)
+
+                    if (prereq === "\"\"" || prereq == null || prereq.length == 0){
+                        prereq = "None"
+                    }
+
+                    if (prereq != "None" && (prereq.includes(",") || prereq.includes(";"))){
+                        while (prereq.includes(",") || prereq.includes(";")){
+                            prereq = formatRequirements(prereq)
+                        }
+                    }
+
+                    if (coreq === "\"\"" || coreq == null || coreq.length == 0){
+                        coreq = "None"
+                    }
+
+                    if (coreq != "None" && (coreq.includes(",") || coreq.includes(";"))){
+                        while (coreq.includes(",") || coreq.includes(";")){
+                            coreq = formatRequirements(coreq)
+                        }
+                    }
+
+                    let prereqInfo = document.createElement("p")
+                    prereqInfo.innerHTML = ("Prerequisites: ").bold().italics() + prereq
+                    infoDiv.appendChild(prereqInfo)
+
+                    let coreqInfo = document.createElement("p")
+                    coreqInfo.innerHTML = ("Corequisites: ").bold().italics() + coreq
+                    infoDiv.appendChild(coreqInfo)
+                    break
+
+                }
+
+            }
+        }
+        else {
+            for (let i = 0; i < majorArr.length; i++){
+                let specArray = majorArr[i]
+                let courseName = specArray[0]
+                if (courseName.trim() === specCourse.trim()){
+                    let courseTitle = specArray[1]
+                    let credits = specArray[2]
+
+                    let modalDiv = document.getElementsByClassName("modal-content")[0]
+                    modalDiv.children[1].innerHTML = ""
+
+                    let infoDiv = document.getElementById("course-information")
+
+                    let headerInfo = document.createElement("h3")
+                    headerInfo.innerHTML = courseName + " - " + credits + " Credits"
+                    infoDiv.appendChild(headerInfo)
+
+                    let subHeaderInfo = document.createElement("h4")
+                    subHeaderInfo.innerHTML = courseTitle
+                    infoDiv.appendChild(subHeaderInfo)
+                    break
+                }
+            }
+
+            for (let i = 0; i < majorArr.length; i++){
+                let specArray = majorArr[i]
+                let courseName = specArray[0]
+                if (courseName.includes(specCourse)){
+                    let courseTitle = specArray[1]
+                    let credits = specArray[2]
+
+                    let modalDiv = document.getElementsByClassName("modal-content")[0]
+                    modalDiv.children[1].innerHTML = ""
+
+                    let infoDiv = document.getElementById("course-information")
+
+                    let headerInfo = document.createElement("h3")
+                    headerInfo.innerHTML = specCourse + " - " + credits + " Credits"
+                    infoDiv.appendChild(headerInfo)
+
+                    let subHeaderInfo = document.createElement("h4")
+                    if (courseTitle.length == 2){
+                        courseTitle = "Please Check Course Catalog For Info"
+                        subHeaderInfo.innerHTML = courseTitle
+                        infoDiv.appendChild(subHeaderInfo)
+
+                        let catalogButton = document.createElement("button")
+                        catalogButton.addEventListener("click", navCourseCatalog)
+                        catalogButton.innerHTML = "View Course Catalog"
+                        catalogButton.style.backgroundColor = "#1e376d"
+                        infoDiv.appendChild(catalogButton)
+                        break
+                    }
+                    subHeaderInfo.innerHTML = courseTitle
+                    infoDiv.appendChild(subHeaderInfo)
+                    break
+                }
+            }
+
+
+        }
+
+        modal.style.display = "block";
+    }
+
+    function formatRequirements(req){
+        req = req.replace(","," or ")
+        req = req.replace(";", " and ").trim()
+        req = req.trim()
+        return req
+    }
+
+    function navCourseCatalog(){
+        window.open("https://cnu.edu/public/undergradcatalog/_pdf/cnu-undergraduate_catalog_20-21.pdf")
+    }
+
+    // ____________________________________________________________________________
 
     var CPEN = []
     var CPSC = []
@@ -318,6 +567,8 @@
     var EENG = []
     var ENGR = []
     var PHYS = []
+    var BSIS = []
+    var ADDSCI = pullLiberalLearning("ADDSCI")
     var AICE = pullLiberalLearning("AICE")
     var AIDE = pullLiberalLearning("AIDE")
     var AIGM = pullLiberalLearning("AIGM")
@@ -332,6 +583,7 @@
     var WI = pullLiberalLearning("WI")
     var loadedClasses = []
     var aiceReq = [3, AICE]
+    var addsciReq = [7, ADDSCI]
     var aideReq = [3, AIDE]
     var aigmReq = [3, AIGM]
     var ainwReq = [7, AINW]
@@ -344,15 +596,24 @@
     var WIreq = [5, WI]
     var electives = []
     var proElectives = []
+    var SAVED = false
 
     var guide = {
 
     }
 
+    const borderColor = {
+        "color": "green"
+    }
+
+    var form_changed = false
+    var CURRENT_ELEMENT = null
+
 
     // Drag Functions ____________________________________________________________________________________________________
 
     function dragElement(elmnt) {
+        var origDimen = getOriginalDimensions()
         var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
         if (document.getElementById(elmnt.id + "header")) {
             /* if present, the header is where you move the DIV from:*/
@@ -366,108 +627,409 @@
         function dragMouseDown(e) {
             e = e || window.event;
             e.preventDefault();
-            // get the mouse cursor position at startup:
             pos3 = e.clientX;
             pos4 = e.clientY;
             document.onmouseup = closeDragElement;
-            // call a function whenever the cursor moves:
             document.onmousemove = elementDrag;
         }
+
 
         function elementDrag(e) {
             e = e || window.event;
             e.preventDefault();
-            // calculate the new cursor position:
             pos1 = pos3 - e.clientX;
-            pos2 = pos4 - e.clientY;    
+            pos2 = pos4 - e.clientY;
             pos3 = e.clientX;
             pos4 = e.clientY;
 
-            // set the element's new position:
-            elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+            let subtract_value = Math.floor((68/77) * (window.screen.height) - 393)
+            elmnt.style.top = (pos4 - subtract_value) + "px";
             elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+
+            CURRENT_ELEMENT = elmnt
+
+
         }
 
-        function closeDragElement() {
-            /* stop moving when mouse button is released:*/
+        function closeDragElement(e) {
             document.onmouseup = null;
             document.onmousemove = null;
+
+            let targetCourseID = e.target.id
+
+            //________________________________________________________________
+            //PRE/COREQ VALIDATION FEATURE
+
+            let curr_elm = elmnt.innerHTML
+            let curr_elm_txt = elmnt.innerText
+
+            //________________________________________________________________
+            let target_elm = document.getElementById(e.target.id)
+            if (!validDrop(target_elm, elmnt)){
+                for (let i = 0; i < origDimen.length; i++){
+                    let find_course = origDimen[i][0]
+                    if (elmnt.innerHTML == find_course){
+                        let orig_left = origDimen[i][1]
+                        let orig_top = origDimen[i][2]
+                        elmnt.style.left = orig_left
+                        elmnt.style.top = orig_top
+                    }
+                }
+                CURRENT_ELEMENT = null
+                return
+            }
+            else{
+                let pRCheck = preReqCheck(curr_elm, targetCourseID)
+                let cRCheck = coReqCheck(curr_elm, targetCourseID)
+
+                let message, css, style
+                let targetCourseElm = document.getElementById(targetCourseID)
+
+                let dropConfirmation
+                if (!pRCheck || !cRCheck){
+                    if (!pRCheck && !cRCheck){
+                        message = "Prerequisites & Corequisite requirements have not been met for " + curr_elm_txt
+
+                    }
+                    else if (!pRCheck){
+                        message = "Prerequisites requirements have not been met for " + curr_elm_txt
+                    }
+                    else {
+                        message = "Corequisites requirements have not been met for " + curr_elm_txt
+                    }
+                    message += "\nSelect OK to Override or Cancel to Remove the Course"
+
+                    dropConfirmation = confirm(message)
+                    if (!dropConfirmation){
+                        for (let i = 0; i < origDimen.length; i++){
+                            let find_course = origDimen[i][0]
+                            if (elmnt.innerHTML == find_course){
+                                let orig_left = origDimen[i][1]
+                                let orig_top = origDimen[i][2]
+                                elmnt.style.left = orig_left
+                                elmnt.style.top = orig_top
+                            }
+                        }
+                        CURRENT_ELEMENT = null
+                        return
+                    }
+                }
+
+                CURRENT_ELEMENT = null
+            }
+
+
+            document.getElementById(targetCourseID).innerHTML = elmnt.innerHTML
+
+            let indexes = targetCourseID.substring(targetCourseID.length - 2)
+
+            let closeButton = document.createElement("button")
+            closeButton.setAttribute("class", "clear-course")
+            closeButton.setAttribute("id", "clear-button" + indexes)
+            closeButton.innerHTML= "X"
+            closeButton.style.visibility = "hidden"
+            document.getElementById(targetCourseID).appendChild(closeButton)
+            document.getElementById("clear-button" + indexes).addEventListener("click", function(){
+                clearCourseInfo(this);
+            }, false)
+
+            let course_select = document.getElementById("currentOption").value
+            let course_options = chooseMajorOptions(course_select)
+            let new_credits = getCourseDetails(course_select, "credits", elmnt.innerHTML)
+            document.getElementById("credit" + indexes).innerHTML = new_credits
+
+            elmnt.style.display = "none"
+            getFeedBack()
+            changeOptions()
+            form_changed = true
+
         }
+
+
     }
 
+    function validDrop(target, elm){
+        if (target == null){
+            return false
+        }
+        let table_div =  document.getElementById("table-holder")
+        let table_pos_left = table_div.offsetLeft
+        let table_width = table_div.offsetWidth
+
+        let elm_left = parseInt(elm.style.left.substring(0, elm.style.left.length - 2))
+        console.log(elm_left)
+        if (elm_left >= table_pos_left && elm_left < (table_pos_left + table_width)){
+            let activeCourses = document.getElementsByClassName("planner-table")
+            let currCourses = []
+            for (let i = 0; i < activeCourses.length; i++){
+                let course = activeCourses[i].innerHTML
+                course = course.split(" ")[0].split("<")[0]
+                currCourses.push(course)
+            }
+            target = target.innerText.substring(0, target.innerText.length - 1)
+            if (!currCourses.includes(target.trim())){
+                for (let i = 0; i < currCourses.length; i++){
+                    let current_course = currCourses[i]
+                    if (current_course.includes(target.trim())){
+                        return true
+                    }
+                }
+                return false
+            }
+            return true
+        }
+        else {
+            return false
+        }
 
 
-
+    }
 
     // ___________________________________________________________________________________________________________________
 
-    loadAllCourses()
-    loadOptions()
+    /**
+     * Returns [prereq, coreq] or null
+     * The first for major courses, the second for non major courses
+     * */
 
-    $.ajax({
-        type: "POST",
-        url: "TableLoader",
-        data: {
-            email: localStorage.getItem("email"),
-            option: "Get Major"
-        },
-        success: function (data) {
-            localStorage.setItem("major", data.trim())
-            updateDropDown(data.trim())
-        },
-        error: function (textStatus, errorThrown) {
-            console.log(errorThrown)
-            console.log(textStatus)
-
+    function getReqInfo(currentCourseName){
+        let courseFamily = document.getElementById("currentOption").value
+        let majorArr = chooseMajorOptions(courseFamily)
+        let firstIndex = majorArr[0]
+        if (typeof firstIndex != "string"){
+            return null
         }
 
-    });
+        for (let i = 0; i < majorArr.length; i++){
+            let majorLine = majorArr[i]
+            let courseInfo = majorLine.split("\t")
+            if (courseInfo.length == 8){
+                courseInfo.pop()
+            }
+            let courseName = courseInfo[0]
+            if (courseName.includes(" ")){
+                let courseTitle = courseName.split(" ")
+                let actualCourseName = courseTitle[0]
+                courseInfo[0] = actualCourseName
+                courseTitle.shift()
+                let fullTitle = ""
+                for (let j = 0; j < courseTitle.length; j++){
+                    fullTitle += " " + courseTitle[j]
+                }
+                fullTitle = fullTitle.trim()
+                courseInfo.splice(1, 0, fullTitle)
+            }
 
-    if (localStorage.getItem("planName") !== "Create New Plan"){
-        $.ajax({
-            type: "POST",
-            url: "TableLoader",
-            async: false,
-            data: {
-                email: localStorage.getItem("email"),
-                planName: localStorage.getItem("planName")
-            },
-            success: function (data) {
-                let requirementData = pullMajorReq(data)
-                electives = requirementData[0]
-                proElectives = requirementData[1]
-                loadedClasses = dataLoader(data)
-            },
-            error: function (textStatus, errorThrown) {
-                console.log(errorThrown)
-                console.log(textStatus)
+            let course = courseInfo[0]
+            if (course.trim() === currentCourseName.trim()){
+                let prereq = courseInfo[4]
+                let coreq = courseInfo[5]
+
+                if (prereq === "\"\"" || prereq == null || prereq.length == 0){
+                    prereq = null
+                }
+
+                if (coreq === "\"\"" || coreq == null || coreq.length == 0){
+                    coreq = null
+                }
+
+                let reqBundle = [prereq, coreq]
+                return reqBundle
 
             }
 
-        });
+        }
     }
-    else {
-        $.ajax({
-            type: "POST",
-            url: "TableLoader",
-            async: false,
-            data: {
-                email: localStorage.getItem("email"),
-            },
-            success: function (data) {
-                let requirementData = pullMajorReq(data)
-                electives = requirementData[0]
-                proElectives = requirementData[1]
-                loadedClasses = dataLoader(data)
-            },
-            error: function (textStatus, errorThrown) {
-                console.log(errorThrown)
-                console.log(textStatus)
 
+    /**
+     * Course Name & ID
+     * */
+    function preReqCheck(course, target){
+        let reqBundle = getReqInfo(course)
+        if (reqBundle == null){
+            return true
+        }
+        if (reqBundle[0] == null){
+            return true
+        }
+
+        let preReq = reqBundle[0]
+        preReq = preReq.split(";")
+        for (let i = 0; i < preReq.length; i++){
+            let currReq = preReq[i]
+            if (currReq.includes(",")){
+                let reqArr = currReq.split(",")
+                for (let j = 0; j < reqArr.length; j++){
+                    if (!isBefore(reqArr[j], target)){
+                        return false
+                    }
+                }
             }
+            else {
+                if (!isBefore(currReq, target)){
+                    return false
+                }
+            }
+        }
+        return true
 
-        });
+
     }
+
+    function coReqCheck(course, target){
+        let reqBundle = getReqInfo(course)
+        if (reqBundle == null){
+            return true
+        }
+        if (reqBundle[1] == null){
+            return true
+        }
+
+        let coReq = reqBundle[1]
+        coReq = coReq.split(";")
+        for (let i = 0; i < coReq.length; i++){
+            let currReq = coReq[i]
+            if (currReq.includes(",")){
+                let reqArr = currReq.split(",")
+                for (let j = 0; j < reqArr.length; j++){
+                    if (!isWithin(reqArr[j], target)){
+                        return false
+                    }
+                }
+            }
+            else {
+                if (!isWithin(currReq, target)){
+                    return false
+                }
+            }
+        }
+        return true
+
+    }
+
+    /**
+     * Takes in preReq course name
+     * Target ID
+     * */
+    function isBefore(preReq, targetID){
+        let activeCourses = document.getElementsByClassName("planner-table")
+        activeCourses = Array.from(activeCourses)
+        for (let i = 0; i < activeCourses.length; i++){
+            let activeCourse = activeCourses[i]
+            let courseName = activeCourse.innerText
+            if (courseName.trim() == preReq.trim()){
+                let courseID = activeCourse.id
+                let idNum = parseInt(courseID.substring(courseID.length - 2))
+                targetID = parseInt(targetID.substring(targetID.length - 2))
+                if (targetID > idNum){
+                    return true
+                }
+                else {
+                    return false
+                }
+            }
+        }
+        return false
+    }
+
+
+    function isWithin(coReq, targetID){
+        let activeCourses = document.getElementsByClassName("planner-table")
+        activeCourses = Array.from(activeCourses)
+        for (let i = 0; i < activeCourses.length; i++){
+            let activeCourse = activeCourses[i]
+            let courseName = activeCourse.innerText
+            if (courseName.trim() == coReq.trim()){
+                let courseID = activeCourse.id
+                let idNum = parseInt(courseID[courseID.length - 2])
+                targetID = parseInt(targetID[targetID.length - 2])
+                if (targetID == idNum){
+                    return true
+                }
+                else {
+                    return false
+                }
+            }
+        }
+        return false
+    }
+
+
+    loadAllCourses()
+
+    function getMajor(){
+        var student_major
+        if (localStorage.getItem("major") != null){
+            student_major = localStorage.getItem("major")
+        }
+        else {
+            console.log("YERRR")
+            let email
+            if (localStorage.getItem("student-email") == null){
+                email = localStorage.getItem("email")
+            }
+            else {
+                email = localStorage.getItem("student-email")
+            }
+            console.log(email)
+            console.log(localStorage.getItem("planName"))
+
+            $.ajax({
+                type: "POST",
+                url: "planServlet",
+                async: false,
+                data: {
+                    action: "Get Major",
+                    email: email,
+                    planName: localStorage.getItem("planName")
+                },
+                success: function (data) {
+                    student_major = data.trim()
+                }
+            });
+        }
+        return student_major
+    }
+
+    getMajor()
+
+
+    updateDropDown(getMajor())  // Pull Major from its own servlet
+
+    fillRequirements()
+
+    function fillRequirements(){
+        if (localStorage.getItem("planName") !== "Create New Plan"){
+            $.ajax({
+                type: "POST",
+                url: "TableLoader",
+                async: false,
+                data: {
+                    email: localStorage.getItem("email"),
+                    planName: localStorage.getItem("planName")
+                },
+                success: function (data) {
+                    data = data.trim()
+                    let requirementData = pullMajorReq(data)
+                    electives = requirementData[0]
+                    proElectives = requirementData[1]
+                    loadedClasses = dataLoader(data)
+                },
+                error: function (textStatus, errorThrown) {
+                }
+
+            });
+        }
+        else {
+            let data = localStorage.getItem("data")
+            let requirementData = pullMajorReq(data)
+            electives = requirementData[0]
+            proElectives = requirementData[1]
+            loadedClasses = dataLoader(data)
+        }
+    }
+
+
 
     function loadFeedBack(){
         let requirements = electives
@@ -479,7 +1041,7 @@
         let lengthCnt = 1
         for (let i = 0; i < requirements.length; i++){
             if (requirements[i].length > 10){
-                guide["See " + (lengthCnt).toString()] = requirements[i]
+                guide["See " + (lengthCnt).toString()] = requirements[i].bold()
                 requirements[i] = "See " + (lengthCnt).toString()
                 lengthCnt++
             }
@@ -527,14 +1089,36 @@
     }
     loadFeedBack()
 
+    function createGuide(){
+        let tooltip = document.getElementById("guide-ref")
+        let guideStr = ""
+        for (const [key, value] of Object.entries(guide)) {
+            let guideP = document.createElement("p")
+            guideP.innerHTML = (key.split(" ")[1]).bold() + ": " + value
+            tooltip.appendChild(guideP)
+        }
+    }
+
+    createGuide()
+
     function getFeedBack(){
         let requirements = document.getElementsByClassName("unique-requirement")
         let activeCourses = document.getElementsByClassName("planner-table")
         activeCourses = Array.from(activeCourses)
 
+        for (let i = 0; i < requirements.length; i++){
+            requirements[i].childNodes[1].checked = false
+        }
+
+        let coreReq = document.getElementsByClassName("core-curr")
+        for (let i = 0; i < coreReq.length; i++){
+            coreReq[i].childNodes[0].checked = false
+        }
+
         let currCourses = []
         for (let i = 0; i < activeCourses.length; i++){
             let course = activeCourses[i].innerHTML
+            course = course.split(" ")[0].split("<")[0]
             currCourses.push(course)
         }
 
@@ -606,7 +1190,7 @@
                         requirements[i].childNodes[1].checked = "true"
                     }
                 }
-            continue;
+                continue;
             }
 
             if (currCourses.includes(course)){
@@ -615,16 +1199,67 @@
 
         }
 
-        let coreReq = document.getElementsByClassName("core-curr")
+        let addScienceChecked = false
         for (let i = 0; i < coreReq.length; i++){
             let coreVal = coreReq[i].innerText
             let checkPresent = hasMet(coreVal)
+            if (coreVal === "AINW"){
+                if (checkPresent){
+                    let metADD = metAdditionalScienceReq("AINW")    // check for additional requirment
+                    if (metADD){
+                        addScienceChecked = true
+                    }
+                    else {
+                        addScienceChecked = false
+                    }
+                }
+            }
+            if (coreVal === "ADDSCI"){
+                coreReq[i].childNodes[0].checked = addScienceChecked
+                continue
+            }
             if (checkPresent){
                 coreReq[i].childNodes[0].checked = "true"
             }
+
         }
 
 
+    }
+
+    function metAdditionalScienceReq(category) {
+        let activeCourses = document.getElementsByClassName("planner-table")
+        activeCourses = Array.from(activeCourses)
+
+        let indexHolder = []
+        let requirements = matchRequirements(category)
+        let creditsNeeded = requirements[0]
+        let creditCnt = 0
+        requirements = requirements[1]
+        for (let i = 0; i < requirements.length; i++) {
+            let req = requirements[i]
+            let course = req[0]
+            let credits = parseInt(req[2])
+
+            for (let j = 0; j < activeCourses.length; j++) {
+                let activeCourse = activeCourses[j].innerText
+                if (course.replace("*", "") === activeCourse.replace("*", "")) {
+                    if (creditCnt >= creditsNeeded){
+                        break
+                    }
+                    creditCnt += credits
+                    indexHolder.push(j)
+                }
+            }
+        }
+        for (let i = 0; i < indexHolder.length; i++){
+            let deleteIndex = indexHolder[i]
+            activeCourses.splice(deleteIndex, 1)
+        }
+        console.log(activeCourses)
+
+        let actuallyMet = hasMetPreSet(activeCourses)
+        return actuallyMet
     }
 
     getFeedBack()
@@ -635,6 +1270,7 @@
         activeCourses = Array.from(activeCourses)
         for (let i = 0; i < activeCourses.length; i++){
             let course = activeCourses[i].innerHTML.trim()
+            course = course.split(" ")[0].split("<")[0]
             if (course.length == 0){
                 continue;
             }
@@ -658,7 +1294,7 @@
                 let credits = parseInt(req[2])
                 for (let j = 0; j < courseNames.length; j++){
                     let activeCourse = courseNames[j]
-                    if (course === activeCourse){
+                    if (course.replace("*","") === activeCourse.replace("*","")){
                         metCnt += credits
                     }
                 }
@@ -672,6 +1308,42 @@
             }
         }
 
+    }
+
+    function hasMetPreSet(activeCourses){
+        let courseNames = []
+        activeCourses = Array.from(activeCourses)
+        for (let i = 0; i < activeCourses.length; i++){
+            let course = activeCourses[i].innerHTML.trim()
+            course = course.split(" ")[0].split("<")[0]
+            if (course.length == 0){
+                continue;
+            }
+            courseNames.push(course)
+        }
+
+        let requirements = matchRequirements("AINW")
+        let creditsNeeded = requirements[0]
+        requirements = requirements[1]
+        let metCnt = 0;
+        for (let i = 0; i < requirements.length; i++){
+            let req = requirements[i]
+            let course = req[0]
+            let credits = parseInt(req[2])
+            for (let j = 0; j < courseNames.length; j++){
+                let activeCourse = courseNames[j]
+                if (course.replace("*","") === activeCourse.replace("*","")){
+                    metCnt += credits
+                }
+            }
+
+        }
+        if (metCnt >= creditsNeeded){
+            return true
+        }
+        else{
+            return false
+        }
     }
 
 
@@ -761,19 +1433,28 @@
         if (proElective.includes(",")){
             let fullReq = []
             let totalReq = proElective[0]
-            fullReq.push(totalReq)
+            let totalNumReq = totalReq
+            totalReq = proElective
             totalReq = totalReq.substring(2, totalReq.length - 2)
             totalReq = totalReq.split(",")
             for (let i = 0; i < totalReq.length; i++){
                 let reqLine = totalReq[i]
-                reqLine = reqLine.replace("(", "").replace(")", "")
+                reqLine = reqLine.replace("(", "").replace(")", "").replace("(", "").replace(")", "")
                 reqLine = reqLine.split(":")
                 let numReq = reqLine[0]
+                if (i === totalReq.length - 1){
+                    let origReq = totalNumReq
+                    let options = numReq.split("/")
+                    let req = [origReq, options]
+                    fullReq.push(req)
+                    continue
+                }
                 let options = reqLine[1].split(";")
                 let req = [numReq, options]
                 fullReq.push(req)
             }
-            return fullReq
+
+            return [elective, fullReq]
         }
         else {
             proElective = proElective.replace("(", "").replace(")", "")
@@ -823,14 +1504,144 @@
             line = fillArray(line)
             for (let j = 0; j < line.length; j++){
                 let course = line[j];
-                pulledCourses.push(course)
                 let credits = getNumCredits(course)
+
+                if (localStorage.getItem("chosen") === "blank" && localStorage.getItem("planName") === "Create New Plan"){
+                    course = ""
+                    credits = ""
+                }
+
+                pulledCourses.push(course)
+
+
                 document.getElementById("plan" + i.toString() + j.toString()).innerHTML = course;
                 document.getElementById("credit" + i.toString() + j.toString()).innerHTML = credits
                 document.getElementById("plan" + i.toString() + j.toString()).setAttribute("class", "planner-table")
+                document.getElementById("plan" + i.toString() + j.toString()).addEventListener("onmouseover", function(){
+                    showCloseButton(this);
+                }, false)
+
+                let closeButton = document.createElement("button")
+                closeButton.setAttribute("class", "clear-course")
+                closeButton.setAttribute("id", "clear-button" + i.toString() + j.toString())
+                closeButton.innerHTML= "X"
+                closeButton.style.visibility = "hidden"
+                document.getElementById("plan" + i.toString() + j.toString()).appendChild(closeButton)
+                document.getElementById("clear-button" + i.toString() + j.toString()).addEventListener("click", function(){
+                    clearCourseInfo(this);
+                }, false)
             }
         }
         return pulledCourses
+    }
+
+    function showCloseButton(location){
+        if (CURRENT_ELEMENT != null && location.innerText.length != 0){
+            location.firstElementChild.style.visibility = "hidden"
+
+        }
+        else {
+            if (location.innerText.length == 0){
+                location.firstElementChild.style.visibility = "hide"
+            }
+            else{
+                location.firstElementChild.style.visibility = "visible"
+            }
+        }
+
+        let targetCourseID = location.id
+
+        let curr_elm = CURRENT_ELEMENT.innerHTML
+
+        let pRCheck = preReqCheck(curr_elm, targetCourseID)
+        let cRCheck = coReqCheck(curr_elm, targetCourseID)
+
+        let targetCourseElm = document.getElementById(targetCourseID)
+        if (pRCheck && cRCheck){
+            targetCourseElm.style.border = "2px solid green"
+            location.firstElementChild.style.visibility = "hide"
+        }
+        else {
+            targetCourseElm.style.border = "2px solid red"
+            location.firstElementChild.style.visibility = "hide"
+        }
+
+
+    }
+
+    function hideCloseButton(location){
+        let targetCourseElm = document.getElementById(location.id)
+        location.firstElementChild.style.visibility = "hidden"
+        targetCourseElm.style.border = "1px solid black"
+    }
+
+    function clearCourseInfo(course){
+        let parent_id = course.parentElement.id
+        let hold_course_info = course.parentElement.innerText.substring(0, course.parentElement.innerText.length - 1)
+        course.parentElement.innerHTML = ""
+
+        let buildButton = document.createElement("button")
+        buildButton.setAttribute("class", "clear-course")
+        buildButton.setAttribute("id", "clear-button" + course.id.slice(-2))
+        buildButton.style.visibility = "hidden"
+        buildButton.innerHTML = "X"
+        document.getElementById(parent_id).appendChild(buildButton)
+
+        let credit_id = "credit" + course.id.slice(-2)
+        document.getElementById(credit_id).innerHTML = ""
+
+        //__________________________________________
+        // DELETING COURSES THAT COUNT AS THAT
+        let cutIndex
+        let activeCourses = document.getElementsByClassName("planner-table")
+        for (let i = 0; i < activeCourses.length; i++){
+            let activeCourse = activeCourses[i].id
+            if (activeCourse === parent_id){
+                cutIndex = i
+            }
+        }
+        activeCourses = Array.from(activeCourses).splice(cutIndex)
+
+        let firstWarning = false
+        for (let i = 0; i < activeCourses.length; i++){
+            let child = activeCourses[i].children[0]
+            let parent_id = child.parentElement.id
+            let activeCourse = activeCourses[i].innerText
+            let activeCourseID = activeCourses[i].id
+            let checkPQ = preReqCheck(activeCourse, activeCourseID)
+            if (!checkPQ){
+                let message = "Delete all additional courses that require " + hold_course_info + " as a prerequisite?"
+                message += "\nSelect Ok to Remove Them & Cancel to Delete Only the Selected Course"
+                if (!firstWarning){
+                    let recursiveRemoval = confirm(message)
+                    firstWarning = true
+                    if (!recursiveRemoval){
+                        break
+                    }
+                }
+
+                child.parentElement.innerHTML = ""
+
+                let buildButton = document.createElement("button")
+                buildButton.setAttribute("class", "clear-course")
+                buildButton.setAttribute("id", "clear-button" + child.id.slice(-2))
+                buildButton.style.visibility = "hidden"
+                buildButton.innerHTML = "X"
+                document.getElementById(parent_id).appendChild(buildButton)
+
+                let credit_id = "credit" + child.id.slice(-2)
+                document.getElementById(credit_id).innerHTML = ""
+
+                i = 0
+            }
+        }
+        form_changed = true
+
+        //__________________________________________
+
+        getFeedBack()
+        changeOptions()
+
     }
 
 
@@ -957,6 +1768,7 @@
         EENG = loadCourse(getFilePath("EENG"))
         ENGR = loadCourse(getFilePath("ENGR"))
         PHYS = loadCourse(getFilePath("PHYS"))
+        BSIS = loadCourse(getFilePath("BSIS"))
     }
 
     function updateDropDown(data){
@@ -964,37 +1776,92 @@
             case ("Computer Science"):
                 document.getElementById("majorSelect").innerHTML = "CPSC"
                 document.getElementById("majorSelect").value = "CPSC"
+                hideDropdowns(data)
+                loadOptions()
                 return
 
             case ("Computer Engineering"):
                 document.getElementById("majorSelect").innerHTML = "CPEN"
                 document.getElementById("majorSelect").value = "CPEN"
+                hideDropdowns(data)
+                loadOptions()
                 return
 
             case ("Cyber Security"):
                 document.getElementById("majorSelect").innerHTML = "CYBR"
                 document.getElementById("majorSelect").value = "CYBR"
+                hideDropdowns(data)
+                loadOptions()
                 return
 
             case ("Electrical Engineering"):
                 document.getElementById("majorSelect").innerHTML = "EENG"
                 document.getElementById("majorSelect").value = "EENG"
+                hideDropdowns(data)
+                loadOptions()
                 return
 
             case ("Information Science"):
                 document.getElementById("majorSelect").innerHTML = "BSIS"
                 document.getElementById("majorSelect").value = "BSIS"
+                hideDropdowns(data)
+                loadOptions()
+                return
+        }
+    }
+
+    function hideDropdowns(type){
+        let cpsc = document.getElementById("CPSC-Select")
+        let cpen = document.getElementById("CPEN-Select")
+        let cybr = document.getElementById("CYBR-Select")
+        let eeng = document.getElementById("EENG-Select")
+        let engr = document.getElementById("ENGR-Select")
+        let bsis = document.getElementById("BSIS-Select")
+
+        cpsc.hidden = true
+        cpen.hidden = true
+        cybr.hidden = true
+        eeng.hidden = true
+        engr.hidden = true
+        bsis.hidden = true
+
+        switch (type){
+            case ("Computer Science"):
+                cpen.hidden = false
+                engr.hidden = false
+                return
+
+            case ("Computer Engineering"):
+                cpen.hidden = true
+                engr.hidden = false
+                return
+
+            case ("Cyber Security"):
+                cpsc.hidden = false
+                engr.hidden = false
+                cpen.hidden = false
+                return
+
+            case ("Electrical Engineering"):
+                cpsc.hidden = false
+                engr.hidden = false
+                cpen.hidden = false
+                return
+
+            case ("Information Science"):
+                cpsc.hidden = false
+                cpen.hidden = false
                 return
         }
     }
 
     function loadOptions(){
-        let major = document.getElementById("majorSelect").value;
+        let major = document.getElementById("currentOption").value;
         let courseOptions = []
-        if (major === "CPEN") { courseOptions = CPEN } 
+        if (major === "CPEN") { courseOptions = CPEN }
         else if (major === "CPSC") { courseOptions = CPSC } else if (major === "CYBR") { courseOptions = CYBR }
-        else if (major === "EENG") { courseOptions = EENG } else if (major === "ENGR") { courseOptions = ENGR } 
-        else if (major === "PHYS") { courseOptions = PHYS }
+        else if (major === "EENG") { courseOptions = EENG } else if (major === "ENGR") { courseOptions = ENGR }
+        else if (major === "PHYS") { courseOptions = PHYS } else if (major === "BSIS") { courseOptions = BSIS }
         else {
             courseOptions = pullLiberalLearning(major)
         }
@@ -1009,7 +1876,7 @@
         if (major === "CPEN") { courseOptions = CPEN }
         else if (major === "CPSC") { courseOptions = CPSC } else if (major === "CYBR") { courseOptions = CYBR }
         else if (major === "EENG") { courseOptions = EENG } else if (major === "ENGR") { courseOptions = ENGR }
-        else if (major === "PHYS") { courseOptions = PHYS }
+        else if (major === "PHYS") { courseOptions = PHYS } else if (major === "BSIS") { courseOptions = BSIS }
         else {
             courseOptions = pullLiberalLearning(major)
         }
@@ -1030,34 +1897,24 @@
                     planName: localStorage.getItem("planName")
                 },
                 success: function (data) {
-                    pulledCourses = dataLoader(data)
+                    let requirementData = pullMajorReq(data)
+                    electives = requirementData[0]
+                    proElectives = requirementData[1]
+                    loadedClasses = dataLoader(data)
+                    pulledCourses = loadedClasses
                 },
                 error: function (textStatus, errorThrown) {
-                    console.log(errorThrown)
-                    console.log(textStatus)
-
                 }
 
             });
         }
         else {
-            $.ajax({
-                type: "POST",
-                url: "TableLoader",
-                async: false,
-                data: {
-                    email: localStorage.getItem("email"),
-                },
-                success: function (data) {
-                    pulledCourses = dataLoader(data)
-                },
-                error: function (textStatus, errorThrown) {
-                    console.log(errorThrown)
-                    console.log(textStatus)
-
-                }
-
-            });
+            let data = localStorage.getItem("data")
+            let requirementData = pullMajorReq(data)
+            electives = requirementData[0]
+            proElectives = requirementData[1]
+            loadedClasses = dataLoader(data)
+            pulledCourses = loadedClasses
         }
 
         let dupCourses = []
@@ -1090,12 +1947,14 @@
         let dupCourses = []
 
         for (let i = 0; i < courseOptions.length; i++){
-            let course = courseOptions[i]
+            let course = courseOptions[i]   // get course option
             for (let j = 0; j < activeElections.length; j++){
-                let pulledCourse = activeElections[j].innerHTML
-                if (pulledCourse.includes(course)){
+                let pulledCourse = activeElections[j].innerText
+                if (pulledCourse.trim() === course.replace("*", "")){
                     dupCourses.push(course)
                 }
+
+
             }
         }
         dupCourses = [...new Set(dupCourses)]
@@ -1129,9 +1988,14 @@
             courseBody.setAttribute("id", major + ":" + courseName)
             courseBody.setAttribute("class", "courseOptions")
             courseBody.innerHTML = courseName.replace("*","")
+            courseBody.addEventListener("click", function(){
+                showCourseInformation(this)
+            }, false)
+
             optionDiv.appendChild(courseBody)
 
             let courseStyling = document.getElementById(major + ":" + courseName)
+            courseStyling.style.zIndex = "10"
             courseStyling.style.fontSize = "13px"
             courseStyling.style.position = "absolute"
             courseStyling.style.border = "1px solid black"
@@ -1139,7 +2003,6 @@
             courseStyling.style.height = "17px"
             courseStyling.style.textAlign = "center"
             courseStyling.style.left = getLeft(i)
-            courseStyling.style.cursor = "grab"
             if (i < 7){
                 courseStyling.style.top = "9%"
             }
@@ -1162,7 +2025,6 @@
             if (typeof currentCourse === "object"){
                 let courseName = currentCourse[0]
                 if (courseName.includes(" ")){
-                    console.log(courseName)
                     courseName = courseName.split(" ")[0]
                 }
                 courseNames.push(courseName)
@@ -1193,6 +2055,9 @@
             case ("AICE"):
                 return aiceReq
 
+            case ("ADDSCI"):
+                return addsciReq
+
             case ("AIGM"):
                 return aigmReq
 
@@ -1219,6 +2084,75 @@
 
             case ("WCL"):
                 return wclReq
+        }
+    }
+
+    function chooseMajorOptions(major){
+        let courseOptions = []
+        if (major === "CPEN") { courseOptions = CPEN }
+        else if (major === "CPSC") { courseOptions = CPSC } else if (major === "CYBR") { courseOptions = CYBR }
+        else if (major === "EENG") { courseOptions = EENG } else if (major === "ENGR") { courseOptions = ENGR }
+        else if (major === "PHYS") { courseOptions = PHYS } else if (major === "BSIS") { courseOptions = BSIS }
+        else {
+            courseOptions = pullLiberalLearning(major)
+        }
+        return courseOptions
+    }
+
+    /**
+     * If Liberal Learning: Only Options are "name" and "credits"
+     * If Major: All options are "name", "credits", "description"
+     * @param major
+     * @param detail
+     * @param course
+     * @returns {*|string}
+     */
+    function getCourseDetails(major, detail, course){
+        let lastChar = course.substr(-1)
+        if (lastChar === "L"){
+            return 1
+        }
+        let course_options = chooseMajorOptions(major)
+        for (let i = 0; i < course_options.length; i++){
+            let courseRow = course_options[i]
+            if (typeof courseRow === "object"){
+                if (detail === "credits"){
+                    return courseRow[2]
+                }
+                else {
+                    return courseRow[1]
+                }
+            }
+            else {
+                let spec_course = courseRow.split("\t")[0].trim()
+                if (spec_course.split(" ").length > 1){
+                    if (detail === "name"){
+                        let fullname = spec_course.split(" ")[1]
+                        for (let j = 1; j < spec_course.length; j++){
+                            fullname += " " + spec_course.split(" ")[i]
+                        }
+                        return fullname
+                    }
+                    else if (detail=== "credits"){
+                        return courseRow.split("\t")[1]
+                    }
+                    else {
+                        return courseRow.split("\t")[2]
+                    }
+                }
+
+                if (course.trim() === spec_course){
+                    if (detail === "credits"){
+                        return courseRow.split("\t")[2]
+                    }
+                    else if (detail === "name"){
+                        return courseRow.split("\t")[1]
+                    }
+                    else {
+                        return courseRow.split("\t")[3]
+                    }
+                }
+            }
         }
     }
 
@@ -1258,7 +2192,295 @@
         }
     }
 
-    // dragElement(document.getElementById("CPSC:CPSC125"))
+    function navMain(){
+        let location
+        if (localStorage.getItem("student-email") == null){
+            location = "welcome.html"
+        }
+        else {
+            location = "student_plans.html"
+        }
+
+        if (!form_changed){
+            window.location.href = location
+            return
+        }
+        if (!SAVED){
+            let saveBeforeExit = confirm("Would you like to save your plan before you exit?")
+            if (!saveBeforeExit){
+                window.location.href = location
+            }
+            else {
+                savePlan()
+                setTimeout(function(){ window.location.href = location }, 1000)
+            }
+        }
+        else {
+            window.location.href = location
+        }
+    }
+
+    /**
+     * [left, top]
+     * @param course
+     */
+    function getOriginalDimensions(){
+        let options = Array.from(document.getElementsByClassName("courseOptions"))
+        let option_packs = []
+        for (let i = 0; i < options.length; i++){
+            let course_name = options[i].innerHTML
+            let course_left = options[i].style.left
+            let course_top = options[i].style.top
+            let option_package = [course_name, course_left, course_top]
+            option_packs.push(option_package)
+        }
+        return option_packs
+    }
+
+    function savePlan(){
+        if (!form_changed){
+            alert("Please Make a Change Before Saving")
+            return false;
+        }
+        let saveString = ""
+        let active = document.getElementsByClassName("planner-table")
+        active = Array.from(active)
+
+        let subArr = []
+        let tempArr = []
+        for (let i = 0; i < active.length; i++){
+            let activeCourse = active[i].innerText
+            tempArr.push(activeCourse)
+
+            let iteration = i+1
+            if (iteration % 12 == 0){
+                let sortA = []
+                let sortB = []
+                for (let j = 0; j < tempArr.length; j++){
+                    if (j % 2 == 0){
+                        sortA.push(tempArr[j])
+                    }
+                    else {
+                        sortB.push(tempArr[j])
+                    }
+                }
+                let combinedArr = sortA.concat(sortB)
+                subArr.push(combinedArr)
+                tempArr = []
+            }
+        }
+
+        let fullArr = subArr[0].concat(subArr[1]).concat(subArr[2]).concat(subArr[3])
+
+        let cnt = 0
+        for (let i = 0; i < fullArr.length; i++){
+            let activeCourse = fullArr[i]
+            saveString += activeCourse + ","
+            cnt++
+            if (cnt == 6){
+                saveString = saveString.substring(0, saveString.length - 1)
+                saveString += "\n"
+                cnt = 0
+            }
+        }
+
+        if (localStorage.getItem("planName") == "Create New Plan" && !SAVED){ // If new plan
+            let origNumPlans = "1"
+            if (localStorage.getItem("numPlans") != null){  // If there are multiple plans, make the default "Plan" + current number
+                origNumPlans = localStorage.getItem("numPlans")
+            }
+            let newPlanName = prompt("Please Enter a Plan Name.", "Plan " + origNumPlans)
+            if (!newPlanName){
+                return false
+            }
+
+            let specialCharacters = "/<>;:{}[]*&^%$#@!"
+            specialCharacters = specialCharacters.split("")
+            for (let i = 0; i < specialCharacters.length; i++){
+                let specialCharacter = specialCharacters[i]
+                if (newPlanName.includes(specialCharacter)){
+                    alert("Plan name cannot include certain special characters. Please try again")
+                    return false
+                }
+            }
+
+
+            let email
+            if (localStorage.getItem("student-email") != null){
+                email = localStorage.getItem("student-email")
+                newPlanName = "941X" + newPlanName
+            }
+            else {
+                email = localStorage.getItem("email")
+            }
+
+
+            let major = localStorage.getItem("major")
+            SAVED = true
+
+            $.ajax({
+                type: "POST",
+                url: "saveServlet",
+                data: {
+                    planName: newPlanName,
+                    email: email,
+                    fullPlan: saveString,
+                    newPlan: "True",
+                    newMajor: major
+                },
+                success: function (data) {
+                    if (data.trim() === "Already Exists"){
+                        alert("Plan Name already exists. Please enter a New Name.")
+                        SAVED = false
+                    }
+                    if (data.trim() === "true"){
+                        alert("Plan Saved Successfully!")
+                        localStorage.setItem("planName", newPlanName)
+                    }
+                },
+                error: function (textStatus, errorThrown) {
+
+                }
+
+            });
+        }
+        else {
+            let email
+            if (localStorage.getItem("student-email") != null && !localStorage.getItem("planName").includes("941X")){
+                alert("Cannot edit a student's plan. Please make a copy")
+                return false
+                email = localStorage.getItem("student-email")
+            }
+            else {
+                email = localStorage.getItem("email")
+            }
+            let savedPlan = localStorage.getItem("planName")
+            let major = localStorage.getItem("major")
+            SAVED = true
+
+            $.ajax({
+                type: "POST",
+                url: "saveServlet",
+                data: {
+                    planName: savedPlan,
+                    email: email,
+                    fullPlan: saveString,
+                    newPlan: "False",
+                    newMajor: major
+                },
+                success: function (data) {
+                    if (data.trim() === "true"){
+                        alert("Plan Saved Successfully!")
+                    }
+                },
+                error: function (textStatus, errorThrown) {
+                    console.log(textStatus)
+                }
+
+            });
+
+        }
+
+    }
+
+    function exportPlan(){
+        if (!SAVED){
+            alert("Please save your plan before exporting!")
+            return false
+        }
+        let active = document.getElementsByClassName("planner-table")
+        active = Array.from(active)
+
+        let subArr = []
+        let tempArr = []
+        let subArr_Cred = []
+        let tempArr_Cred = []
+        for (let i = 0; i < active.length; i++){
+            let activeCourse = active[i].innerText
+            tempArr.push(activeCourse)
+            let credits = document.getElementById("credit" + active[i].id.substring(4)).innerText
+            tempArr_Cred.push(credits)
+
+
+            let iteration = i+1
+            if (iteration % 12 == 0){
+                let sortA = []
+                let sortB = []
+                let sortA_Cred = []
+                let sortB_Cred = []
+                for (let j = 0; j < tempArr.length; j++){
+                    if (j % 2 == 0){
+                        sortA.push(tempArr[j])
+                        sortA_Cred.push(tempArr_Cred[j])
+                    }
+                    else {
+                        sortB.push(tempArr[j])
+                        sortB_Cred.push(tempArr_Cred[j])
+                    }
+                }
+                let combinedArr = sortA.concat(sortB)
+                let combinedArr_Cred = sortA_Cred.concat(sortB_Cred)
+                subArr.push(combinedArr)
+                subArr_Cred.push(combinedArr_Cred)
+                tempArr = []
+                tempArr_Cred = []
+            }
+        }
+
+        let fullArr = subArr[0].concat(subArr[1]).concat(subArr[2]).concat(subArr[3])
+        let fullArr_Cred = subArr_Cred[0].concat(subArr_Cred[1]).concat(subArr_Cred[2]).concat(subArr_Cred[3])
+
+        let saveString = ""
+        let cnt = 0
+        for (let i = 0; i < fullArr.length; i++){
+            let courseName = fullArr[i]
+            let credits = fullArr_Cred[i]
+
+            if (courseName.length == 0){
+                saveString += ";"
+            }
+            else {
+                saveString += courseName + "," + credits + ";"
+            }
+            cnt++
+            if (cnt == 6){
+                saveString = saveString.substring(0, saveString.length - 1)
+                saveString += "\n"
+                cnt = 0
+            }
+        }
+
+        let email
+        if (localStorage.getItem("student-email") != null && !localStorage.getItem("planName").includes("941X")){
+            email = localStorage.getItem("student-email")
+        }
+        else {
+            email = localStorage.getItem("email")
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "exportServlet",
+            data: {
+                fullPlan: saveString,
+                email: email,
+                planName: localStorage.getItem("planName").replace("941X","")
+
+            },
+            success: function (data) {
+                if (data.trim() === "true"){
+                    alert("Plan Exported. Please check your downloads folder.")
+                }
+            },
+            error: function (textStatus, errorThrown) {
+                console.log(textStatus)
+            }
+
+        });
+
+    }
+
+
 
 
 

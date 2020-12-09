@@ -38,7 +38,11 @@ public class LoginServlet extends HttpServlet {
 		String studentPlan = null;
 		
 		try {
-			if (!hasAccount(email)) {
+			if (isAdvisor(email)) {
+				out.println("Advisor");
+			}
+			
+			else if (!hasAccount(email)) {
 				accountAdded = addAccount(name, email);
 				out.print("Account Added!");
 
@@ -62,7 +66,7 @@ public class LoginServlet extends HttpServlet {
 			String connectionUrl = "jdbc:sqlserver://DESKTOP-RI159U3:1433;databaseName=ClearPath";
 			Connection connection = DriverManager.getConnection(connectionUrl, USER, PASSWORD);
 			
-			String SQL = "INSERT INTO Student VALUES (?,?,\'',\'',null,\'',\'',\'')";
+			String SQL = "INSERT INTO Student VALUES (?,?,\'',\'',null,\'',\'',\'',null)";
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			ps.setString(1, name);
 			ps.setString(2, email);
@@ -81,6 +85,30 @@ public class LoginServlet extends HttpServlet {
 		}
 	}
 	
+	public static boolean isAdvisor(String email) throws ClassNotFoundException {
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			String connectionUrl = "jdbc:sqlserver://DESKTOP-RI159U3:1433;databaseName=ClearPath";
+			Connection connection = DriverManager.getConnection(connectionUrl, USER, PASSWORD);
+			String SQL = "SELECT * FROM Advisor WHERE Email = ?";
+			PreparedStatement statement = connection.prepareStatement(SQL);
+			statement.setString(1, email);
+			ResultSet rs = statement.executeQuery();
+//			connection.close();
+
+			if (!rs.next()){
+				return false;
+			}
+			else {
+				return true;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	public static boolean hasAccount(String email) throws ClassNotFoundException {
 		ArrayList<Student> students = new ArrayList<Student>();
 		try {
@@ -92,7 +120,7 @@ public class LoginServlet extends HttpServlet {
 			statement.setString(1, email);
 			ResultSet rs = statement.executeQuery();
 
-			String name, emailAdd, major, minor, fullPlan, advisor, planNames;
+			String name, emailAdd, major, minor, fullPlan, advisor, planNames, planMajor;
 			boolean isGrad;
 
 			while (rs.next()) {
@@ -104,7 +132,8 @@ public class LoginServlet extends HttpServlet {
 				fullPlan = rs.getString(6);
 				advisor = rs.getString(7);
 				planNames = rs.getString(8);
-				Student student = new Student(name, emailAdd, major, minor, isGrad, fullPlan, advisor, planNames);
+				planMajor = rs.getString(9);
+				Student student = new Student(name, emailAdd, major, minor, isGrad, fullPlan, advisor, planNames, planMajor);
 				students.add(student);
 			}
 
@@ -134,7 +163,7 @@ public class LoginServlet extends HttpServlet {
 			statement.setString(1, email);
 			ResultSet rs = statement.executeQuery();
 
-			String name, emailAdd, major, minor, fullPlan, advisor, planNames;
+			String name, emailAdd, major, minor, fullPlan, advisor, planNames, planMajor;
 			boolean isGrad;
 
 			while (rs.next()) {
@@ -146,7 +175,8 @@ public class LoginServlet extends HttpServlet {
 				fullPlan = rs.getString(6);
 				advisor = rs.getString(7);
 				planNames = rs.getString(8);
-				Student student = new Student(name, emailAdd, major, minor, isGrad, fullPlan, advisor, planNames);
+				planMajor = rs.getString(9);
+				Student student = new Student(name, emailAdd, major, minor, isGrad, fullPlan, advisor, planNames, planMajor);
 				students.add(student);
 			}
 
@@ -164,13 +194,11 @@ public class LoginServlet extends HttpServlet {
 		}
 	}
 
-	public static void main(String[] args) throws ClassNotFoundException {
-		String email = "jimmy.allahmensah.17@cnu.edu";
-		Student s = retrieveAccount(email);
-		String toStr = s.toString();
-		String totalPlan = s.getPlanNames();
-		System.out.println(totalPlan);
-
-	}
+//	public static void main(String[] args) throws ClassNotFoundException {
+//		String email = "Lynn.Lambert@cnu.edu";
+//		boolean b = isAdvisor(email);
+//		System.out.println(b);
+//
+//	}
 
 }

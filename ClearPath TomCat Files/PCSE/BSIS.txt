@@ -1,0 +1,8 @@
+ACCT200	Accounting Concepts	3	""	""	""	""
+PSYC202	Investigating the Social Context of Behavior and Cognition	3	""	""	""	""
+BUSN303	Fundamentals of Business	3	""	""	""	""
+BUSN231	Applied Business Statistics	3	""	""	""	""
+PSYC303	Industrial and Organizational Psychology	3	""	""	""	""
+PSYC313	Human Relations in Organizations	3	""	""	""	""
+FINC300	Managerial Finance	3	""	""	""	""
+MGMT450	Advanced Data Analytics	3	""	""	""	""

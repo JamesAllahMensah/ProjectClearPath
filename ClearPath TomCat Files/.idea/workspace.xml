@@ -11,8 +11,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -25,12 +25,13 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/PCSE" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Program Files\Apache Software Foundation\Tomcat 8.5\webapps\clearpath" />
       <recent name="C:\Program Files\Apache Software Foundation\Tomcat 8.5\webapps\clearpath\PCSE" />
     </key>
   </component>
@@ -52,7 +53,22 @@
       <workItem from="1603303922531" duration="27761000" />
       <workItem from="1604615098897" duration="44771000" />
       <workItem from="1604725490692" duration="4669000" />
-      <workItem from="1604958444287" duration="3271000" />
+      <workItem from="1604958444287" duration="4249000" />
+      <workItem from="1605310612231" duration="11244000" />
+      <workItem from="1605322011843" duration="9365000" />
+      <workItem from="1605337892738" duration="4921000" />
+      <workItem from="1605343327663" duration="2678000" />
+      <workItem from="1605369030956" duration="11334000" />
+      <workItem from="1605688358441" duration="91923000" />
+      <workItem from="1606264460868" duration="1574000" />
+      <workItem from="1606280743798" duration="25000" />
+      <workItem from="1606280937665" duration="346000" />
+      <workItem from="1606576692803" duration="27082000" />
+      <workItem from="1606803206626" duration="15000" />
+      <workItem from="1606889753026" duration="31729000" />
+      <workItem from="1607411389955" duration="1978000" />
+      <workItem from="1607469344678" duration="207000" />
+      <workItem from="1607483814082" duration="8000" />
     </task>
     <servers />
   </component>
@@ -64,23 +80,24 @@
       <screen x="0" y="0" width="1504" height="963" />
     </state>
     <state x="483" y="229" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1504.963/2256.0.1920.1040@0.0.1504.963" timestamp="1601335266915" />
-    <state x="2996" y="275" key="FileChooserDialogImpl" timestamp="1604959253993">
+    <state x="2996" y="275" key="FileChooserDialogImpl" timestamp="1606803220341">
       <screen x="2256" y="0" width="1920" height="1040" />
     </state>
-    <state x="2996" y="275" key="FileChooserDialogImpl/0.0.1504.963/2256.0.1920.1040@2256.0.1920.1040" timestamp="1604959253993" />
+    <state x="580" y="255" key="FileChooserDialogImpl/0.0.1504.963/2256.0.1920.1040@0.0.1504.963" timestamp="1606256579525" />
+    <state x="2996" y="275" key="FileChooserDialogImpl/0.0.1504.963/2256.0.1920.1040@2256.0.1920.1040" timestamp="1606803220341" />
     <state x="2717" y="165" key="SettingsEditor" timestamp="1604695284027">
       <screen x="2256" y="0" width="1920" height="1040" />
     </state>
     <state x="2717" y="165" key="SettingsEditor/0.0.1504.963/2256.0.1920.1040@2256.0.1920.1040" timestamp="1604695284027" />
-    <state x="2923" y="73" width="585" height="894" key="find.popup" timestamp="1604695247115">
+    <state x="2923" y="73" width="585" height="894" key="find.popup" timestamp="1605802359538">
       <screen x="2256" y="0" width="1920" height="1040" />
     </state>
-    <state x="2923" y="73" width="585" height="894" key="find.popup/0.0.1504.963/2256.0.1920.1040@2256.0.1920.1040" timestamp="1604695247115" />
-    <state x="2778" y="240" key="run.anything.popup" timestamp="1604646556248">
+    <state x="2923" y="73" width="585" height="894" key="find.popup/0.0.1504.963/2256.0.1920.1040@2256.0.1920.1040" timestamp="1605802359538" />
+    <state x="2778" y="240" key="run.anything.popup" timestamp="1606892070858">
       <screen x="2256" y="0" width="1920" height="1040" />
     </state>
     <state x="409" y="222" key="run.anything.popup/0.0.1504.963/2256.0.1920.1040@0.0.1504.963" timestamp="1601333759592" />
-    <state x="2778" y="240" key="run.anything.popup/0.0.1504.963/2256.0.1920.1040@2256.0.1920.1040" timestamp="1604646556248" />
+    <state x="2778" y="240" key="run.anything.popup/0.0.1504.963/2256.0.1920.1040@2256.0.1920.1040" timestamp="1606892070858" />
     <state x="2617" y="241" key="search.everywhere.popup" timestamp="1604695251672">
       <screen x="2256" y="0" width="1920" height="1040" />
     </state>

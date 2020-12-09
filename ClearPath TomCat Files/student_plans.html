@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href=https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <h5 class="card-title text-center"> Advisor Here</h5>
+                    <input onclick="navCreationPage()" style="background-color: grey" type="button" class="btn btn-lg btn-primary btn-block text-uppercase"  value="Create Plan For ">
+                    <br class="line-break">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="position: absolute; right: 20px; top: 10px">
+    <button style="background: transparent; border: none; color: white" onclick="signOut()">Sign Out</button>
+</div>
+</body>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script>
+    function navTable(){
+        window.location.href = "table.html"
+    }
+
+    function navLoadedTable(){
+        let clickedPlan = this.name;
+        localStorage.setItem("planName", clickedPlan)
+        localStorage.setItem("email", localStorage.getItem("student-email"))
+        window.location.href = "table.html"
+
+    }
+
+    function signOut(){
+        window.location.href = "index.html"
+    }
+
+    function navCreationPage(){
+        window.location.href = "main.html"
+    }
+
+    let student_name = localStorage.getItem("student-name")
+    if (student_name[student_name.length - 1] === 's'){
+        document.getElementsByClassName('card-title text-center')[0].innerHTML = student_name + "' Plans";
+    }
+    else {
+        document.getElementsByClassName('card-title text-center')[0].innerHTML = student_name + "'s Plans";
+    }
+
+    document.getElementsByClassName("btn btn-lg btn-primary btn-block text-uppercase")[0].value += student_name.split(" ")[0]
+
+    $.ajax({
+        type: "POST",
+        url: "RetrieveStudentInfo",
+        data: {
+            email: localStorage.getItem("student-email").trim()
+        },
+        success: function (data) {
+            appendMultiplePlans(data)
+        },
+        error: function (textStatus, errorThrown) {
+
+        }
+
+    });
+
+    function appendMultiplePlans(data){
+        data = data.split("\t")
+        let planNames = data[0]
+        let fullPlans = data[1]
+        let mult_plan_names = planNames.split(";")
+        let mult_full_plans = fullPlans.split(";")
+        let cardBody = document.getElementsByClassName("card-body")[0];
+        for (let i = 0; i < mult_plan_names.length; i++){
+            let advisorAdd = false
+            let plan = mult_plan_names[i].trim()
+            if (plan.includes("941X")){
+                plan = plan.replace("941X", "")
+                advisorAdd = true
+            }
+            if (plan.trim().length == 0){
+                continue
+            }
+            let full_plan = mult_full_plans[i].trim()
+            let navButton = document.createElement("input");
+            let lineBreak = document.createElement("br");
+            lineBreak.setAttribute("class", "line-break")
+            navButton.setAttribute("input", "button")
+            navButton.setAttribute("class", "btn btn-lg btn-primary btn-block text-uppercase");
+            navButton.setAttribute("data-fullPlan", full_plan)
+            if (advisorAdd){
+                navButton.setAttribute("name", "941X" + plan);
+                navButton.setAttribute("value", plan);
+            }
+            else {
+                navButton.setAttribute("name", plan);
+                navButton.setAttribute("value", plan);
+            }
+            navButton.addEventListener("click", navLoadedTable);
+            if (advisorAdd){
+                navButton.style.backgroundColor = "#0a2240"
+            }
+
+            cardBody.appendChild(navButton)
+            cardBody.appendChild(lineBreak)
+        }
+
+
+
+
+    }
+
+
+</script>
+</html>

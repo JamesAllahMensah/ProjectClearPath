@@ -19,12 +19,16 @@
                     <h5 class="card-title text-center"> Welcome, </h5>
                     <button onclick = "navTable()" class="btn btn-lg btn-primary btn-block text-uppercase" >View Recommended</button>
                     <hr class="my-4">
-                    <button onclick = "navQuestionnaire()" class="btn btn-lg btn-google btn-block text-uppercase" ><i class="fab fa-google mr-2"></i>Start Blank</button>
+                    <button style="background-color: grey" onclick = "navQuestionnaire()" class="btn btn-lg btn-google btn-block text-uppercase" ><i class="fab fa-google mr-2"></i>Start Blank</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<div style="position: absolute; right: 20px; top: 10px">
+    <button style="background: transparent; border: none; color: white" onclick="signOut()">Sign Out</button>
+</div>
+
 </body>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
@@ -35,13 +39,20 @@
         document.getElementsByClassName('card-title text-center')[0].innerHTML = "Create a New Plan"
     }
 
+    function signOut(){
+        window.location.href = "index.html"
+    }
+
     function navQuestionnaire(){
+        localStorage.setItem("chosen", "blank")
+        localStorage.setItem("planName", "Create New Plan");
         window.location.href = "questionnaire.html";
     }
 
     function navTable(){
+        localStorage.setItem("chosen", "recommended")
         localStorage.setItem("planName", "Create New Plan");
-        window.location.href = "table.html";
+        window.location.href = "questionnaire.html";
     }
 
 </script>

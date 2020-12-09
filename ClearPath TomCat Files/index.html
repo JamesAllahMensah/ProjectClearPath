@@ -21,24 +21,15 @@
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div class="card card-signin my-5">
                 <div class="card-body">
-                    <h5 class="card-title text-center">Sign In</h5>
-                    <div class="g-signin2" data-onsuccess="onSignIn">
-<!--                        <form name="loginForm" method="post" action="LoginServlet">-->
-<!--                            <input id = "username" value="a" type="text" name="username"/> <br/>-->
-<!--                            <input id = "password" style="visibility: hidden" value="a" type="password" name="password"/> <br/>-->
-<!--                            <input type="submit" value="Login" />-->
-<!--                        </form>-->
+                    <h5 class="card-title text-center">Sign In With Google</h5>
+                    <div style="margin-left: 35%" class="g-signin2" data-onsuccess="onSignIn">
                     </div>
-<!--                    <form name="loginForm" method="post" action="LoginServlet">-->
-<!--                        <input style="visibility: hidden" type="text" name="username"/> <br/>-->
-<!--                        <input style="visibility: hidden" type="password" name="password"/> <br/>-->
-<!--                        <input type="submit" value="Login" />-->
-<!--                    </form>-->
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 </body>
 <script>
     window.onbeforeunload = function(e){
@@ -53,8 +44,8 @@
         var profile = googleUser.getBasicProfile();
         var name = profile.getName();
         var email = profile.getEmail();
-        // name = "Dav Arcand";
-        // email = "dave.arcand.17@cnu.edu";
+        // name = "Lynn Lambert"
+        // email = "Lynn.Lambert@cnu.edu"
         localStorage.setItem("name", name)
         localStorage.setItem("email", email)
         $.ajax({
@@ -65,7 +56,7 @@
                 email: email,
             },
             success: function (data) {
-                console.log("Bet")
+                console.log(data)
                 redirect(data);
             },
             error: function (textStatus, errorThrown) {
@@ -75,9 +66,17 @@
         });
     }
 
+    /**
+     * If a new user, they're sent to the main page greeted by "Create a New Plan"
+     * If current user, they're sent to the welcome page and their current plans are loaded
+     * @param response
+     */
     function redirect(response){
         if (response === "Account Added!"){
-            window.location.href = "main.html"
+            window.location.href = "select_advisor.html"
+        }
+        else if (response.trim() === "Advisor"){
+            window.location.href = "advisor_welcome.html"
         }
         else{
             localStorage.setItem("info", response)

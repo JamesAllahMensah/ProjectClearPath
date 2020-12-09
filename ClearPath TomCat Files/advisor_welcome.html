@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href=https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <h5 class="card-title text-center"> Advisor Here</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="position: absolute; right: 20px; top: 10px">
+    <button style="background: transparent; border: none; color: white" onclick="signOut()">Sign Out</button>
+</div>
+
+
+</body>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script>
+    function navTable(){
+        window.location.href = "table.html"
+    }
+
+    function signOut() {
+        window.location.href="index.html"
+    }
+
+    function navLoadedTable(){
+        let email = this.id;
+        let name = this.value
+        localStorage.setItem("student-email", email)
+        localStorage.setItem("student-name", name)
+        window.location.href = "student_plans.html"
+    }
+
+    function navCreationPage(){
+        window.location.href = "main.html"
+    }
+
+    let advisor_name = localStorage.getItem("name")
+    if (advisor_name[advisor_name.length - 1] === 's'){
+        document.getElementsByClassName('card-title text-center')[0].innerHTML = advisor_name + "' Students";
+    }
+    else {
+        document.getElementsByClassName('card-title text-center')[0].innerHTML = advisor_name + "'s Students";
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "StudentRetrievalServlet",
+        data: {
+            name: localStorage.getItem("name").trim(),
+        },
+        success: function (data) {
+            appendMultiplePlans(data)
+        },
+        error: function (textStatus, errorThrown) {
+
+        }
+
+    });
+
+    function appendMultiplePlans(data){
+        data = data.split("\n")
+        let names = data[0]
+        let emails = data[1]
+        let student_names = names.split(";")
+        let student_emails = emails.split(";")
+        let cardBody = document.getElementsByClassName("card-body")[0];
+        for (let i = 0; i < student_names.length; i++){
+            let name = student_names[i].trim();
+            let email = student_emails[i].trim();
+            let navButton = document.createElement("input");
+            let lineBreak = document.createElement("br");
+            lineBreak.setAttribute("class", "line-break")
+            navButton.setAttribute("input", "button")
+            navButton.setAttribute("class", "btn btn-lg btn-primary btn-block text-uppercase");
+            navButton.setAttribute("id", email)
+            navButton.setAttribute("value", name);
+            navButton.addEventListener("click", navLoadedTable);
+            cardBody.appendChild(navButton)
+            cardBody.appendChild(lineBreak)
+        }
+
+
+
+
+    }
+
+
+</script>
+</html>
